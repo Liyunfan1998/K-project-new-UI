@@ -1,0 +1,3 @@
+{
+    "files": ["history.ui","main.py","ViewMainWindow.qml","viewMain.ui","instructions.ui","login.ui","checkInfo.ui","ViewMainWindow.ui.qml","excercises.ui"]
+}
