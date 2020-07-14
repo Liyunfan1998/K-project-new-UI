@@ -17,7 +17,7 @@ class Instruction_controller(QDialog):
         self.con = None
         self.ui = Ui_MainWindow_Instructions()
         self.ui.setupUi(self)
-        self.videoController = VideoController(self)
+        # self.videoController = VideoCaptureController(self)
         self.connectUserDefinedSlots()
 
     def connectUserDefinedSlots(self):
@@ -107,7 +107,6 @@ class VideoController:
 
     def screenShot(self):
         pass
-
 
 
 # This file should not be ran as main entry!

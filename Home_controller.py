@@ -3,6 +3,8 @@ import MySQLdb as mdb
 import sys
 from home_modified import *
 from Instruction_controller import *
+from Exercise_controller import *
+from History_controller import *
 
 
 class Home_controller(QDialog):
@@ -16,6 +18,8 @@ class Home_controller(QDialog):
 
     def connectUserDefinedSlots(self):
         self.ui.pushButton_instructions.clicked.connect(self.gotoInstructionsWindow)
+        self.ui.pushButton_excercises.clicked.connect(self.gotoExercisesWindow)
+        self.ui.pushButton_history.clicked.connect(self.gotoHistoryWindow)
 
     def fetchAllWithSQL(self, sql):
         with self.con:
@@ -55,10 +59,17 @@ class Home_controller(QDialog):
         dialog.show()
 
     def gotoExercisesWindow(self):
-        pass
+        self.hide()
+        exercise_controller = Exercise_controller(parent=self, rootController=self)
+        exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
+        dialog = exercise_controller
+        dialog.show()
 
     def gotoHistoryWindow(self):
-        pass
+        self.hide()
+        history_controller = History_controller(parent=self, rootController=self)
+        dialog = history_controller
+        dialog.show()
 
     def DBConnection(self):
         try:

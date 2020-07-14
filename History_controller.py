@@ -4,20 +4,20 @@ from PyQt5.QtCore import QThread, Qt, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
 import sys
-from excercises import *
+from history import *
 
 
 # Note That we have to grant access to the camera if we are using a Mac!
 # Either Update your pycharm to 2020.1.3 or use terminal with access settings!
 
-class Exercise_controller(QDialog):
+class History_controller(QDialog):
     def __init__(self, parent=None, rootController=None):
-        super(Exercise_controller, self).__init__(parent)
+        super(History_controller, self).__init__(parent)
         self.rootController = rootController
         self.con = None
-        self.ui = Ui_MainWindow_Exercises()
+        self.ui = Ui_MainWindow_Instructions()
         self.ui.setupUi(self)
-        # self.videoCaptureController = VideoCaptureController(self)
+        self.videoController = VideoController(self)
         self.connectUserDefinedSlots()
 
     def connectUserDefinedSlots(self):
@@ -49,12 +49,12 @@ class Exercise_controller(QDialog):
 
     def gotoHomeWindow(self):
         self.hide()
-        self.videoCaptureController.closeEvent()
         home_controller = self.rootController
         dialog = home_controller
         # if dialog.exec():
         #     pass  # do stuff on success
         # self.show()
+
         dialog.show()
 
     def DBConnection(self):
@@ -72,15 +72,9 @@ class Exercise_controller(QDialog):
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
 
-    def __init__(self, rootUIController):
-        super().__init__(rootUIController)
-        self._run_flag = True
-
     def run(self):
         cap = cv2.VideoCapture(0)
-        self.cap = cap
-        # capture from web cam
-        while self._run_flag:
+        while True:
             ret, frame = cap.read()
             if ret:
                 # https://stackoverflow.com/a/55468544/6622587
@@ -90,28 +84,17 @@ class Thread(QThread):
                 convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)
-        # shut down capture system
-        cap.release()
-
-    def stop(self):
-        """Sets run flag to False and waits for thread to finish"""
-        self._run_flag = False
-        self.wait()
 
 
-class VideoCaptureController:
+class VideoController:
     def __init__(self, rootUIController):
         # create a label
         rootUIController.label = QLabel(rootUIController)
         rootUIController.label.move(280, 120)
         rootUIController.label.resize(640, 480)
-        self.th = th = Thread(rootUIController)
+        th = Thread(rootUIController)
         th.changePixmap.connect(rootUIController.setImage)
         th.start()
-
-    def closeEvent(self, event=None):
-        self.th.stop()
-        # event.accept()
 
     def pause(self):
         pass
@@ -129,9 +112,9 @@ class VideoCaptureController:
 # This file should not be ran as main entry!
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    exercise_controller = Exercise_controller()
+    instruction_controller = Instruction_controller()
     MainWindow = QtWidgets.QMainWindow()
-    exercise_controller.ui.setupUi(MainWindow)
-    exercise_controller.connectUserDefinedSlots()
+    instruction_controller.ui.setupUi(MainWindow)
+    instruction_controller.connectUserDefinedSlots()
     MainWindow.show()
     app.exec_()
