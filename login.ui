@@ -18,7 +18,7 @@
     <rect>
      <x>270</x>
      <y>10</y>
-     <width>311</width>
+     <width>331</width>
      <height>81</height>
     </rect>
    </property>
@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Welcome to Kinect ToLf</string>
+    <string>Welcome to LymphCoach</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="graphicsView_logo">

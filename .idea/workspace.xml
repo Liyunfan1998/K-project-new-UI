@@ -2,37 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/20200711汇报/20200711.pptx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20200711汇报/CVAE.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20200711汇报/VAE.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20200711汇报/Xmind DRPose3D Depth Ranking in 3D Human Pose Estimation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20200711汇报/Xmind Monocular 3D Human Pose Estimation by Generation and Ordinal Ranking.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20200711汇报/Xmind Ordinal Depth Supervision for 3D Human Pose Estimation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-29f2dfa2d85718320353a3a5f6b426e3_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-852e3ffd0c482de49d69f87b2a4b4d4d_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-89c819c3fa01903272c0df355bd4473f_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-a108d9425682f6908e61ccf983d9ac6c_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-abcbf504cd361b149caca56fea7c90a3_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/25401928_assets/v2-c2acba45269364fcfd460d37848f441d_b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CVAE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DRPose3D Depth Ranking in 3D Human Pose Estimation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DRPose3D Depth Ranking in 3D Human Pose Estimation.xmind" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Home_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Monocular 3D Human Pose Estimation by Generation and Ordinal Ranking.xmind" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ordinal Depth Supervision for 3D Human Pose Estimation.xmind" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/VAE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paperNotesTemplat.xmind" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/K-project-new.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/K-project-new.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Instruction_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1805.04095.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Ordinal Depth Supervision for 3D Human Pose Estimation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1904.01324.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Monocular 3D Human Pose Estimation by Generation and Ordinal Ranking.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.py" beforeDir="false" afterPath="$PROJECT_DIR$/home_modified.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.ui" beforeDir="false" afterPath="$PROJECT_DIR$/home.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructions.py" beforeDir="false" afterPath="$PROJECT_DIR$/instructions_modified.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructions.ui" beforeDir="false" afterPath="$PROJECT_DIR$/instructions.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/login.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewMain.ui" beforeDir="false" afterPath="$PROJECT_DIR$/home.ui" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,16 +22,16 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/K_project_new$login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1594025443334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$main.coverage" NAME="main Coverage Results" MODIFIED="1594704085355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1594715922211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1594704844168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1594730820713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1594727311295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="104">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
             </state>
           </provider>
         </entry>
@@ -60,8 +39,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+            <state relative-caret-position="266">
+              <caret line="56" selection-start-line="56" selection-end-line="57" />
+              <folding>
+                <element signature="e#0#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Home_controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -70,7 +61,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.py">
+        <entry file="file://$PROJECT_DIR$/home_modified.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="169">
               <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
@@ -81,14 +72,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Home_controller.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/instructions_modified.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="117">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Instruction_controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/home.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -122,8 +131,11 @@
       <find>userTypeFlip</find>
       <find>if</find>
       <find>gotoHomeWindow</find>
-      <find>exec</find>
       <find>submit_form</find>
+      <find>clicked</find>
+      <find>exec</find>
+      <find>lym</find>
+      <find>label_title</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,7 +149,11 @@
         <option value="$PROJECT_DIR$/login.py" />
         <option value="$PROJECT_DIR$/Utils.py" />
         <option value="$PROJECT_DIR$/home.py" />
+        <option value="$PROJECT_DIR$/instructions.py" />
+        <option value="$PROJECT_DIR$/instructions_modified.py" />
+        <option value="$PROJECT_DIR$/home_modified.py" />
         <option value="$PROJECT_DIR$/Login_controller.py" />
+        <option value="$PROJECT_DIR$/Instruction_controller.py" />
         <option value="$PROJECT_DIR$/Home_controller.py" />
       </list>
     </option>
@@ -276,19 +292,19 @@
       <option name="presentableId" value="Default" />
       <updated>1594018837412</updated>
       <workItem from="1594018840639" duration="5525000" />
-      <workItem from="1594119258028" duration="10227000" />
+      <workItem from="1594119258028" duration="15742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15752000" />
+    <option name="totallyTimeSpent" value="21267000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="777" extended-state="6" />
+    <frame x="0" y="24" width="1280" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14378029" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49905482" visible="true" weight="0.14378029" />
+      <window_info id="Structure" order="1" sideWeight="0.50094515" side_tool="true" visible="true" weight="0.14378029" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
@@ -346,9 +362,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Login_controller.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/Instruction_controller.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -382,9 +398,6 @@
     <entry file="file://$PROJECT_DIR$/history.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/instructions.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/viewMain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -404,28 +417,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/home.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding>
-            <element signature="e#193#235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Login_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#75#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="104">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>
@@ -439,10 +432,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/home_modified.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding>
+            <element signature="e#193#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="56" selection-start-line="56" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/instructions_modified.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Instruction_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Home_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="277">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>

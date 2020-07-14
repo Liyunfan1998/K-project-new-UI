@@ -5,10 +5,11 @@ from login import *
 from Home_controller import *
 
 
-class Login_controller(object):
-    def __init__(self):
-        super().__init__()
+class Login_controller(QMainWindow):
+    def __init__(self, parent=None):
+        super(Login_controller, self).__init__(parent)
         self.ui = Ui_Kproj()
+        self.ui.setupUi(self)
         self.parsePrams = {}
 
     def connectUserDefinedSlots(self):
@@ -50,10 +51,11 @@ class Login_controller(object):
     def gotoHomeWindow(self):
         self.hide()
         home_controller = Home_controller(parent=self)
-        dialog = home_controller.ui
-        if dialog.exec():
-            pass  # do stuff on success
-        self.show()
+        dialog = home_controller
+        # if dialog.exec():
+        #     pass  # do stuff on success
+        # self.show()
+        dialog.show()
 
     def DBConnection(self):
         try:
@@ -94,8 +96,9 @@ class Login_controller(object):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     login_controller = Login_controller()
-    MainWindow = QtWidgets.QMainWindow()
-    login_controller.ui.setupUi(MainWindow)
+    # MainWindow = QtWidgets.QMainWindow()
+    # login_controller.ui.setupUi(MainWindow)
     login_controller.connectUserDefinedSlots()
-    MainWindow.show()
+    # MainWindow.show
+    login_controller.show()
     app.exec_()

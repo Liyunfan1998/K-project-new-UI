@@ -7,9 +7,10 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow_Home:  # (QMainWindow)
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -68,10 +69,10 @@ class Ui_MainWindow(object):
         self.pushButton_history = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_history.setGeometry(QtCore.QRect(340, 410, 112, 51))
         self.pushButton_history.setObjectName("pushButton_history")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        # MainWindow.setCentralWidget(self.centralwidget)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -84,10 +85,8 @@ class Ui_MainWindow(object):
         self.label_exercises.setText(_translate("MainWindow", "Exercises"))
         self.label_history.setText(_translate("MainWindow", "History"))
         self.pushButton_instructions.setText(_translate("MainWindow", "Instruction\n"
-"Details"))
+                                                                      "Details"))
         self.pushButton_excercises.setText(_translate("MainWindow", "Excercise\n"
-"Details"))
+                                                                    "Details"))
         self.pushButton_history.setText(_translate("MainWindow", "History\n"
-"Details"))
-
-
+                                                                 "Details"))

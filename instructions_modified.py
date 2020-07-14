@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow_Instructions:  # (object)
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
@@ -43,10 +43,10 @@ class Ui_MainWindow(object):
         self.horizontalSlider.setGeometry(QtCore.QRect(1060, 190, 111, 22))
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName("horizontalSlider")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        # MainWindow.setCentralWidget(self.centralwidget)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -59,5 +59,3 @@ class Ui_MainWindow(object):
         self.pushButton_pause.setText(_translate("MainWindow", "Pause"))
         self.pushButton_stop.setText(_translate("MainWindow", "Stop"))
         self.pushButton_print.setText(_translate("MainWindow", "Print"))
-
-

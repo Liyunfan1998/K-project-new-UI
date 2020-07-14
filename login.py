@@ -10,12 +10,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Kproj(object):
-
     def setupUi(self, Kproj):
         Kproj.setObjectName("Kproj")
         Kproj.resize(800, 430)
         self.label_title = QtWidgets.QLabel(Kproj)
-        self.label_title.setGeometry(QtCore.QRect(270, 10, 311, 81))
+        self.label_title.setGeometry(QtCore.QRect(270, 10, 331, 81))
         font = QtGui.QFont()
         font.setPointSize(30)
         self.label_title.setFont(font)
@@ -65,15 +64,17 @@ class Ui_Kproj(object):
         self.label_gender.setFont(font)
         self.label_gender.setObjectName("label_gender")
         self.frame = QtWidgets.QFrame(Kproj)
-        self.frame.setGeometry(QtCore.QRect(520, 260, 111, 61))
+        self.frame.setGeometry(QtCore.QRect(520, 250, 111, 71))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.radioButton_male = QtWidgets.QRadioButton(self.frame)
         self.radioButton_male.setGeometry(QtCore.QRect(10, 10, 81, 20))
+        self.radioButton_male.setChecked(False)
         self.radioButton_male.setObjectName("radioButton_male")
         self.radioButton_female = QtWidgets.QRadioButton(self.frame)
-        self.radioButton_female.setGeometry(QtCore.QRect(10, 30, 81, 20))
+        self.radioButton_female.setGeometry(QtCore.QRect(10, 40, 81, 20))
+        self.radioButton_female.setChecked(True)
         self.radioButton_female.setObjectName("radioButton_female")
 
         self.retranslateUi(Kproj)
@@ -82,7 +83,7 @@ class Ui_Kproj(object):
     def retranslateUi(self, Kproj):
         _translate = QtCore.QCoreApplication.translate
         Kproj.setWindowTitle(_translate("Kproj", "Kproj"))
-        self.label_title.setText(_translate("Kproj", "Welcome to Kinect ToLf"))
+        self.label_title.setText(_translate("Kproj", "Welcome to LymphCoach"))
         self.label_name.setText(_translate("Kproj", "Name:"))
         self.label_id.setText(_translate("Kproj", "ID:"))
         self.pushButton_login.setText(_translate("Kproj", "Log in as patient"))
@@ -90,3 +91,5 @@ class Ui_Kproj(object):
         self.label_gender.setText(_translate("Kproj", "Gender:"))
         self.radioButton_male.setText(_translate("Kproj", "Male"))
         self.radioButton_female.setText(_translate("Kproj", "Female"))
+
+

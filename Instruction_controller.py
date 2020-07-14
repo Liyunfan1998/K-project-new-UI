@@ -1,21 +1,20 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 import MySQLdb as mdb
 import sys
-from home_modified import *
-from Instruction_controller import *
+from instructions_modified import *
 
 
-class Home_controller(QDialog):
-    def __init__(self, parent=None):
-        super(Home_controller, self).__init__(parent)
+class Instruction_controller(QDialog):
+    def __init__(self, parent=None, rootController=None):
+        super(Instruction_controller, self).__init__(parent)
+        self.rootController = rootController
         self.con = None
-        self.ui = Ui_MainWindow_Home()
+        self.ui = Ui_MainWindow_Instructions()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
-        self.controllers = {}
 
     def connectUserDefinedSlots(self):
-        self.ui.pushButton_instructions.clicked.connect(self.gotoInstructionsWindow)
+        self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
 
     def fetchAllWithSQL(self, sql):
         with self.con:
@@ -24,41 +23,32 @@ class Home_controller(QDialog):
             rows = cur.fetchall()
             return rows
 
-    def textBrowserExcercisesUpdate(self):
+    def textBrowserInstructionsPerExerciseUpdate(self):
         sql = ""
         rows = self.fetchAllWithSQL(sql)
         for row in rows:
             # TODO
             print(row)
 
-    def textBrowserInstructionsUpdate(self):
+    def listWidget_exerciseListUpdate(self):
         sql = ""
         rows = self.fetchAllWithSQL(sql)
         for row in rows:
             # TODO
             print(row)
 
-    def textBrowserHistoryUpdate(self):
-        sql = ""
-        rows = self.fetchAllWithSQL(sql)
-        for row in rows:
-            # TODO
-            print(row)
+    def videoOps(self):
+        pass
 
-    def gotoInstructionsWindow(self):
+    def gotoHomeWindow(self):
         self.hide()
-        instruction_controller = Instruction_controller(parent=self, rootController=self)
-        dialog = instruction_controller
+        home_controller = self.rootController
+        dialog = home_controller
         # if dialog.exec():
         #     pass  # do stuff on success
         # self.show()
+
         dialog.show()
-
-    def gotoExercisesWindow(self):
-        pass
-
-    def gotoHistoryWindow(self):
-        pass
 
     def DBConnection(self):
         try:
@@ -68,12 +58,29 @@ class Home_controller(QDialog):
             sys.exit(1)
 
 
+class VideoController:
+    def __init__(self):
+        pass
+
+    def pause(self):
+        pass
+
+    def play(self):
+        pass
+
+    def toggleProcessBar(self):
+        pass
+
+    def screenShot(self):
+        pass
+
+
 # This file should not be ran as main entry!
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    home_controller = Home_controller()
+    instruction_controller = Instruction_controller()
     MainWindow = QtWidgets.QMainWindow()
-    home_controller.ui.setupUi(MainWindow)
-    home_controller.connectUserDefinedSlots()
+    instruction_controller.ui.setupUi(MainWindow)
+    instruction_controller.connectUserDefinedSlots()
     MainWindow.show()
     app.exec_()
