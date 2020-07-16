@@ -7,6 +7,7 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 import MySQLdb as mdb
 import sys
+import os
 
 
 # To replace the repetitive code in the controllers
@@ -138,9 +139,14 @@ class VideoPlayerController(QWidget):
         self.rootUIController.mediaPlayer.stateChanged.connect(self.mediastate_changed)
         self.rootUIController.mediaPlayer.positionChanged.connect(self.position_changed)
         self.rootUIController.mediaPlayer.durationChanged.connect(self.duration_changed)
-        self.open_file()
 
-    def open_file(self, filename='/Users/liyunfan/Desktop/深度学习/NYU_summer_intern/K-project-new-UI/1.mp4'):
+        # Create exit action
+        # TODO
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, '1.mp4')
+        self.open_file(filename=filename)
+
+    def open_file(self, filename):
         # filename, _ = QFileDialog.getOpenFileName(self.rootUIController, "Open Video")
         if filename != '':
             self.rootUIController.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(filename)))
@@ -151,6 +157,10 @@ class VideoPlayerController(QWidget):
             self.rootUIController.mediaPlayer.pause()
         else:
             self.rootUIController.mediaPlayer.play()
+
+    def exit_video(self):
+        self.rootUIController.mediaPlayer.stop()
+        self.rootUIController.ui.horizontalSlider_videoPos.setValue(0)
 
     def mediastate_changed(self, state):
         if self.rootUIController.mediaPlayer.state() == QMediaPlayer.PlayingState:

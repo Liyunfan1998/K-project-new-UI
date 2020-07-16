@@ -70,7 +70,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Stop</string>
+     <string>Refresh</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_print">

@@ -1,8 +1,11 @@
+from PyQt5.QtWidgets import QGraphicsPixmapItem, QGraphicsScene
+
 from home_modified import *
 from Instruction_controller import *
 from Exercise_controller import *
 from History_controller import *
 from Utils import *
+import webbrowser
 
 
 class Home_controller(QDialog):
@@ -12,7 +15,15 @@ class Home_controller(QDialog):
         self.ui = Ui_MainWindow_Home()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
+        self.loadLogo()
         self.controllers = {}
+
+    def loadLogo(self):
+        self.image = QPixmap('logo.jpeg').scaled(150, 150, QtCore.Qt.KeepAspectRatio)
+        self.ui.graphicsView_logo.scene = QGraphicsScene()  # 创建一个图片元素的对象
+        item = QGraphicsPixmapItem(self.image)  # 创建一个变量用于承载加载后的图片
+        self.ui.graphicsView_logo.scene.addItem(item)  # 将加载后的图片传递给scene对象
+        self.ui.graphicsView_logo.setScene(self.ui.graphicsView_logo.scene)
 
     def connectUserDefinedSlots(self):
         self.ui.pushButton_instructions.clicked.connect(self.gotoInstructionsWindow)

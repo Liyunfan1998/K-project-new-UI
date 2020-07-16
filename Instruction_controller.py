@@ -1,10 +1,11 @@
 import cv2
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QLabel
+from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QLabel, QListWidgetItem
 from PyQt5.QtCore import QThread, Qt, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
 from Utils import DBUtils, VideoPlayerController
 import sys
+from random import sample
 from instructions_modified import *
 
 
@@ -19,31 +20,35 @@ class Instruction_controller(QDialog):
         self.dbUtils = DBUtils(rootController=self)
         self.ui = Ui_MainWindow_Instructions()
         self.ui.setupUi(self)
+        self.listWidget_exerciseListUpdate()
+        self.textBrowserInstructionsPerExerciseUpdate()
         self.connectUserDefinedSlots()
 
     def connectUserDefinedSlots(self):
         self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
+        self.ui.pushButton_VideoStop.clicked.connect(self.updateAll)
 
-    def fetchAllWithSQL(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            rows = cur.fetchall()
-            return rows
+    def updateAll(self):
+        self.textBrowserInstructionsPerExerciseUpdate()
+        self.listWidget_exerciseListUpdate()
+        self.videoPlayerController.exit_video()
 
     def textBrowserInstructionsPerExerciseUpdate(self):
         sql = ""
-        rows = self.fetchAllWithSQL(sql)
-        for row in rows:
-            # TODO
-            print(row)
+        # rows = self.dbUtils.DBFetchAll(sql)
+        rows = sample(range(10, 30), 5)
+        self.ui.textBrowser.clear()
+        self.ui.textBrowser.insertPlainText(str(rows))
 
     def listWidget_exerciseListUpdate(self):
         sql = ""
-        rows = self.fetchAllWithSQL(sql)
+        # rows = self.dbUtils.DBFetchAll(sql)
+        rows = sample(range(10, 30), 5)
+        self.ui.listWidget.clear()
         for row in rows:
             # TODO
-            print(row)
+            QListWidgetItem(str(row), self.ui.listWidget)
+            # print(row)
 
     def videoOps(self):
         pass
@@ -52,9 +57,6 @@ class Instruction_controller(QDialog):
         self.hide()
         home_controller = self.rootController
         dialog = home_controller
-        # if dialog.exec():
-        #     pass  # do stuff on success
-        # self.show()
 
         dialog.show()
 
