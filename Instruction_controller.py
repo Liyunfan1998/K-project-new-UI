@@ -91,7 +91,7 @@ class VideoController:
         # create a label
         rootUIController.label = QLabel(rootUIController)
         rootUIController.label.move(280, 120)
-        rootUIController.label.resize(640, 480)
+        rootUIController.label.resize(471, 441)  # (640, 480)
         th = Thread(rootUIController)
         th.changePixmap.connect(rootUIController.setImage)
         th.start()

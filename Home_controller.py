@@ -62,6 +62,7 @@ class Home_controller(QDialog):
         self.hide()
         exercise_controller = Exercise_controller(parent=self, rootController=self)
         exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
+        exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller)
         dialog = exercise_controller
         dialog.show()
 

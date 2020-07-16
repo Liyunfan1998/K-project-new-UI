@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/History_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/1.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/excercises_modified.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Exercise_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Exercise_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/History_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/History_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Instruction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Instruction_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/excercises.py" beforeDir="false" afterPath="$PROJECT_DIR$/excercises.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/excercises.ui" beforeDir="false" afterPath="$PROJECT_DIR$/excercises.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history.py" beforeDir="false" afterPath="$PROJECT_DIR$/history.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +139,7 @@
       <workItem from="1594018840639" duration="5525000" />
       <workItem from="1594119258028" duration="18373000" />
       <workItem from="1594747248457" duration="461000" />
-      <workItem from="1594747806714" duration="3781000" />
+      <workItem from="1594747806714" duration="10294000" />
     </task>
     <servers />
   </component>
@@ -147,22 +150,22 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1594752256102">
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1594882339203">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1594752256102" />
-    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1594752256101">
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1594882339203" />
+    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1594882339168">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1594752256101" />
-    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1594752256101">
+    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1594882339168" />
+    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1594882339124">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1594752256101" />
-    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1594752256102">
+    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1594882339124" />
+    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1594882339202">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1594752256102" />
+    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1594882339202" />
     <state x="164" y="39" key="SettingsEditor" timestamp="1594747861862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -180,6 +183,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1594752256090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1594882339100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

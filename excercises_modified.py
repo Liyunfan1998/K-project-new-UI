@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow_Exercises:  # (object)
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1000, 800)
@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
         self.progressBar_leftToGo.setFont(font)
         self.progressBar_leftToGo.setAutoFillBackground(False)
         self.progressBar_leftToGo.setProperty("value", 50)
-        self.progressBar_leftToGo.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.progressBar_leftToGo.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.progressBar_leftToGo.setInvertedAppearance(False)
         self.progressBar_leftToGo.setObjectName("progressBar_leftToGo")
         self.label_leftToGo = QtWidgets.QLabel(self.centralwidget)
@@ -77,10 +77,10 @@ class Ui_MainWindow(object):
         self.horizontalSlider_videoPos.setGeometry(QtCore.QRect(600, 370, 381, 22))
         self.horizontalSlider_videoPos.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_videoPos.setObjectName("horizontalSlider_videoPos")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        # MainWindow.setCentralWidget(self.centralwidget)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -93,5 +93,3 @@ class Ui_MainWindow(object):
         self.label_leftToGo.setText(_translate("MainWindow", "2 to go!"))
         self.pushButton_home.setText(_translate("MainWindow", "Home"))
         self.pushButton_videoPlay.setText(_translate("MainWindow", "Play"))
-
-

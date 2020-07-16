@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow_History:  # (object)
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
@@ -32,10 +32,10 @@ class Ui_MainWindow(object):
         self.comboBox_actions = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_actions.setGeometry(QtCore.QRect(10, 210, 271, 32))
         self.comboBox_actions.setObjectName("comboBox_actions")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        # MainWindow.setCentralWidget(self.centralwidget)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -45,5 +45,3 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_home.setText(_translate("MainWindow", "Home"))
         self.label_patientInfo.setText(_translate("MainWindow", "Patient Info"))
-
-
