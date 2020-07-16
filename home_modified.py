@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
+from Utils import MyCalendar
 
 
 class Ui_MainWindow_Home:  # (QMainWindow)
@@ -42,7 +43,7 @@ class Ui_MainWindow_Home:  # (QMainWindow)
         font.setPointSize(20)
         self.label_exercises.setFont(font)
         self.label_exercises.setObjectName("label_exercises")
-        self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
+        self.calendarWidget = MyCalendar(rootConrtoller=self)
         self.calendarWidget.setGeometry(QtCore.QRect(10, 280, 311, 211))
         self.calendarWidget.setObjectName("calendarWidget")
         self.label_history = QtWidgets.QLabel(self.centralwidget)

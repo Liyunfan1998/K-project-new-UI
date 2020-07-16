@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QLa
 from PyQt5.QtCore import QThread, Qt, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
+from Utils import DBUtils, VideoPlayerController
 import sys
 from instructions_modified import *
 
@@ -15,9 +16,9 @@ class Instruction_controller(QDialog):
         super(Instruction_controller, self).__init__(parent)
         self.rootController = rootController
         self.con = None
+        self.dbUtils = DBUtils(rootController=self)
         self.ui = Ui_MainWindow_Instructions()
         self.ui.setupUi(self)
-        # self.videoController = VideoCaptureController(self)
         self.connectUserDefinedSlots()
 
     def connectUserDefinedSlots(self):
@@ -63,50 +64,6 @@ class Instruction_controller(QDialog):
         except mdb.Error as e:
             QMessageBox.about(self, 'Connection', 'Failed To Connect Database')
             sys.exit(1)
-
-    @pyqtSlot(QImage)
-    def setImage(self, image):
-        self.label.setPixmap(QPixmap.fromImage(image))
-
-
-class Thread(QThread):
-    changePixmap = pyqtSignal(QImage)
-
-    def run(self):
-        cap = cv2.VideoCapture(0)
-        while True:
-            ret, frame = cap.read()
-            if ret:
-                # https://stackoverflow.com/a/55468544/6622587
-                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                h, w, ch = rgbImage.shape
-                bytesPerLine = ch * w
-                convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
-                p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
-                self.changePixmap.emit(p)
-
-
-class VideoController:
-    def __init__(self, rootUIController):
-        # create a label
-        rootUIController.label = QLabel(rootUIController)
-        rootUIController.label.move(280, 120)
-        rootUIController.label.resize(471, 441)  # (640, 480)
-        th = Thread(rootUIController)
-        th.changePixmap.connect(rootUIController.setImage)
-        th.start()
-
-    def pause(self):
-        pass
-
-    def play(self):
-        pass
-
-    def toggleProcessBar(self):
-        pass
-
-    def screenShot(self):
-        pass
 
 
 # This file should not be ran as main entry!

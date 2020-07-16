@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 import MySQLdb as mdb
 import sys
-from history import *
+from history_modified import *
+from Utils import DBUtils
 
 
 # Note That we have to grant access to the camera if we are using a Mac!
@@ -12,6 +13,7 @@ class History_controller(QDialog):
         super(History_controller, self).__init__(parent)
         self.rootController = rootController
         self.con = None
+        self.dbUtils = DBUtils(rootController=self)
         self.ui = Ui_MainWindow_History()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
@@ -19,50 +21,19 @@ class History_controller(QDialog):
     def connectUserDefinedSlots(self):
         self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
 
-    def fetchAllWithSQL(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            rows = cur.fetchall()
-            return rows
-
-    def textBrowserInstructionsPerExerciseUpdate(self):
-        sql = ""
-        rows = self.fetchAllWithSQL(sql)
-        for row in rows:
-            # TODO
-            print(row)
-
-    def listWidget_exerciseListUpdate(self):
-        sql = ""
-        rows = self.fetchAllWithSQL(sql)
-        for row in rows:
-            # TODO
-            print(row)
-
-    def videoOps(self):
-        pass
-
     def gotoHomeWindow(self):
         self.hide()
         home_controller = self.rootController
         dialog = home_controller
         dialog.show()
 
-    def DBConnection(self):
-        try:
-            self.con = mdb.connect('localhost', 'root', '', 'rehab')
-        except mdb.Error as e:
-            QMessageBox.about(self, 'Connection', 'Failed To Connect Database')
-            sys.exit(1)
-
 
 # This file should not be ran as main entry!
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    instruction_controller = Instruction_controller()
+    history_controller = History_controller()
     MainWindow = QtWidgets.QMainWindow()
-    instruction_controller.ui.setupUi(MainWindow)
-    instruction_controller.connectUserDefinedSlots()
+    history_controller.ui.setupUi(MainWindow)
+    history_controller.connectUserDefinedSlots()
     MainWindow.show()
     app.exec_()

@@ -1,16 +1,14 @@
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
-import MySQLdb as mdb
-import sys
 from home_modified import *
 from Instruction_controller import *
 from Exercise_controller import *
 from History_controller import *
+from Utils import *
 
 
 class Home_controller(QDialog):
     def __init__(self, parent=None):
         super(Home_controller, self).__init__(parent)
-        self.con = None
+        self.dbUtils = DBUtils(rootController=self)
         self.ui = Ui_MainWindow_Home()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
@@ -21,12 +19,9 @@ class Home_controller(QDialog):
         self.ui.pushButton_excercises.clicked.connect(self.gotoExercisesWindow)
         self.ui.pushButton_history.clicked.connect(self.gotoHistoryWindow)
 
-    def fetchAllWithSQL(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            rows = cur.fetchall()
-            return rows
+    # should this function be the base model for displaying?
+    def fetchAllWithSQL(self, sql, displayWidget=None):
+        return self.dbUtils.DBFetchAll(sql)
 
     def textBrowserExcercisesUpdate(self):
         sql = ""
@@ -52,10 +47,8 @@ class Home_controller(QDialog):
     def gotoInstructionsWindow(self):
         self.hide()
         instruction_controller = Instruction_controller(parent=self, rootController=self)
+        instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller)
         dialog = instruction_controller
-        # if dialog.exec():
-        #     pass  # do stuff on success
-        # self.show()
         dialog.show()
 
     def gotoExercisesWindow(self):
@@ -71,13 +64,6 @@ class Home_controller(QDialog):
         history_controller = History_controller(parent=self, rootController=self)
         dialog = history_controller
         dialog.show()
-
-    def DBConnection(self):
-        try:
-            self.con = mdb.connect('localhost', 'root', '', 'rehab')
-        except mdb.Error as e:
-            QMessageBox.about(self, 'Connection', 'Failed To Connect Database')
-            sys.exit(1)
 
 
 # This file should not be ran as main entry!
