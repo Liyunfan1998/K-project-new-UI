@@ -20,22 +20,17 @@ class Login_controller(QMainWindow):
     def submit_form(self):
         ui = self.ui
         # if 单选 type
-        self.parsePrams['name'] = ui.label_name.text()
-        self.parsePrams['gender'] = ui.label_gender.text()
-
-        self.parsePrams['id'] = ui.label_id.text()
-        type = "PatientLogIn"
-        userInput = {'First Name': self.parsePrams['name'], 'Gender': self.parsePrams['gender']}
-        self.gotoHomeWindow()
-
-        """
+        self.parsePrams['name'] = ui.lineEdit_name.text()
+        self.parsePrams['gender'] = 'F' if ui.radioButton_female.isChecked() else 'M'
+        self.parsePrams['id'] = ui.lineEdit_id.text()
+        self.parsePrams['type'] = 'clinician' if self.ui.checkBox_isClinician.isChecked() else "patient"
+        userInput = {'Name': self.parsePrams['name'], 'ID': self.parsePrams['id'],
+                     'Gender': self.parsePrams['gender'], 'Type': self.parsePrams['type']}
         # check with database
-        self.dbUtils.DBConnection()
-        if self.dbUtils.DBValidation(userInput=userInput, type=type):
+        if self.dbUtils.DBValidation(userInput=userInput):
             self.gotoHomeWindow()
         else:
             QMessageBox.about(self, 'Validation', 'Information Mismatch! Please check again!')
-        """
 
     def userTypeFlip(self, state):
         if state == QtCore.Qt.Checked:

@@ -15,10 +15,11 @@ class DBUtils(object):
     def __init__(self, rootController=None):
         self.con = None
         self.rootController = rootController
+        self.DBConnection()
 
     def DBConnection(self):
         try:
-            self.con = mdb.connect('localhost', 'root', '', 'rehab')
+            self.con = mdb.connect('localhost', 'root', 'yun2' + 'fan1', 'NYU')
         except mdb.Error as e:
             QMessageBox.about(self.rootController, 'Connection', 'Failed To Connect Database')
             sys.exit(1)
@@ -39,32 +40,19 @@ class DBUtils(object):
             rows = cur.fetchall()
             return rows
 
-    def DBValidation(self, userInput, type="PatientLogIn"):
-        con = self.con
-        if type == "PatientLogIn":
-            with con:
-                cur = con.cursor()
-                sql = "SELECT"
-                cur.execute(sql)
-                jsonDataFoundByID = cur.fetchone()
-                name = jsonDataFoundByID['Name']
-                gender = jsonDataFoundByID['Gender']
-
-                userInputName = userInput['Name']
-                userInputGender = userInput['Gender']
-                valid = name == userInputName and gender == userInputGender
-                return valid
-        elif type == "ClinicianLogIn":
-            with con:
-                cur = con.cursor()
-                sql = "SELECT"
-                cur.execute(sql)
-                jsonDataFoundByID = cur.fetchone()
-                name = jsonDataFoundByID['Name']
-
-                userInputName = userInput['Name']
-                valid = name == userInputName
-                return valid
+    def DBValidation(self, userInput):
+        if 'Name' not in userInput or 'Type' not in userInput or 'ID' not in userInput:
+            return False
+        if userInput['Name'] == '' or userInput['Type'] == '' or userInput['ID'] == '':
+            return False
+        cur = self.con.cursor()
+        sql = "SELECT * from userpassvalidation where username='" + userInput['Name'] + "' and password='" + \
+              userInput['ID'] + "' and type='" + userInput['Type'] + "'"
+        print(sql)
+        cur.execute(sql + ';')
+        jsonDataFoundByID = cur.fetchone()
+        valid = jsonDataFoundByID is not None
+        return valid
 
 
 class MyCalendar(QCalendarWidget):
