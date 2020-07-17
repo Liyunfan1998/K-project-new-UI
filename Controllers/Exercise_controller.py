@@ -5,8 +5,8 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
 import sys
-from Utils import DBUtils
-from excercises_modified import *
+from Tools.Utils import DBUtils
+from Layouts.excercises_modified import *
 
 
 # Note That we have to grant access to the camera if we are using a Mac!
@@ -42,7 +42,7 @@ class Exercise_controller(QDialog):
         # 好像没有exit掉，多个视频在后台同时播放
         sql = 'select videoExercise from instructionnotes where instructionnotes.index="' + str(index) + '"'
         rows = self.dbUtils.DBFetchAll(sql)
-        relativePath = 'NoLongerInUse/' + str(rows[0][0])
+        relativePath = '../NoLongerInUse/' + str(rows[0][0])
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, relativePath)
         self.videoPlayerController.open_file(filename=filename)

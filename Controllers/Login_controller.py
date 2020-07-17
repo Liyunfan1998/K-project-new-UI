@@ -1,8 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
-import MySQLdb as mdb
-import sys
-from login_modified import *
-from Home_controller import *
+from Layouts.login_modified import *
+from Controllers.Home_controller import *
 
 
 class Login_controller(QMainWindow):

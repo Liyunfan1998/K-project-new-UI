@@ -1,11 +1,8 @@
-from PyQt5.QtWidgets import QGraphicsPixmapItem, QGraphicsScene
-
-from home_modified import *
-from Instruction_controller import *
-from Exercise_controller import *
-from History_controller import *
-from Utils import *
-import webbrowser
+from Layouts.home_modified import *
+from Controllers.Instruction_controller import *
+from Controllers.Exercise_controller import *
+from Controllers.History_controller import *
+from Tools.Utils import *
 
 
 class Home_controller(QDialog):
@@ -19,7 +16,7 @@ class Home_controller(QDialog):
         self.controllers = {}
 
     def loadLogo(self):
-        self.image = QPixmap('logo.jpeg').scaled(150, 150, QtCore.Qt.KeepAspectRatio)
+        self.image = QPixmap('Assets/logo.jpeg').scaled(150, 150, QtCore.Qt.KeepAspectRatio)
         self.ui.graphicsView_logo.scene = QGraphicsScene()  # 创建一个图片元素的对象
         item = QGraphicsPixmapItem(self.image)  # 创建一个变量用于承载加载后的图片
         self.ui.graphicsView_logo.scene.addItem(item)  # 将加载后的图片传递给scene对象

@@ -1,8 +1,8 @@
 import os
 from PyQt5.QtWidgets import QApplication, QDialog, QListWidgetItem
-from Utils import DBUtils
+from Tools.Utils import DBUtils
 import sys
-from instructions_modified import *
+from Layouts.instructions_modified import *
 
 
 # Note That we have to grant access to the camera if we are using a Mac!
@@ -44,7 +44,7 @@ class Instruction_controller(QDialog):
         # 好像没有exit掉，多个视频在后台同时播放
         sql = 'select videoInstruction from instructionnotes where instructionnotes.index="' + str(index) + '"'
         rows = self.dbUtils.DBFetchAll(sql)
-        relativePath = 'NoLongerInUse/' + str(rows[0][0])
+        relativePath = '../NoLongerInUse/' + str(rows[0][0])
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, relativePath)
         self.videoPlayerController.open_file(filename=filename)

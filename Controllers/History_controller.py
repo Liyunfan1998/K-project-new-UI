@@ -1,9 +1,8 @@
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox, QGraphicsScene, QGraphicsPixmapItem, QListWidgetItem
+from PyQt5.QtWidgets import QApplication, QDialog, QGraphicsScene, QGraphicsPixmapItem, QListWidgetItem
 import sys
-from history_modified import *
-from Utils import DBUtils
-from random import sample
+from Layouts.history_modified import *
+from Tools.Utils import DBUtils
 
 
 # Note That we have to grant access to the camera if we are using a Mac!
@@ -62,7 +61,7 @@ class History_controller(QDialog):
     def plotAngleHistory(self):
         # TODO
         # Dynamic Plot
-        self.image = QPixmap('hist.jpg').scaled(901, 750, QtCore.Qt.KeepAspectRatio)
+        self.image = QPixmap('../Assets/hist.jpg').scaled(901, 750, QtCore.Qt.KeepAspectRatio)
         self.ui.graphicsView_angleDatePlot.scene = QGraphicsScene()  # 创建一个图片元素的对象
         item = QGraphicsPixmapItem(self.image)  # 创建一个变量用于承载加载后的图片
         self.ui.graphicsView_angleDatePlot.scene.addItem(item)  # 将加载后的图片传递给scene对象

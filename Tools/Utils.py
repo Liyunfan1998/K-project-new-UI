@@ -114,7 +114,7 @@ class VideoPlayerController(QWidget):
         # Create exit action
         # TODO
         dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, '1.mp4')
+        filename = os.path.join(dirname, 'Assets/1.mp4')
         self.open_file(filename=filename)
 
     def open_file(self, filename):
