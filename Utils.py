@@ -1,7 +1,8 @@
 import cv2
 from PyQt5.QtGui import QTextCharFormat, QIcon, QPalette, QImage
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QCalendarWidget, QMessageBox, QWidget, \
-    QStyle, QLabel, QWidget, QHBoxLayout, QVBoxLayout, QSlider, QStyle, QSizePolicy, QFileDialog
+    QStyle, QLabel, QWidget, QHBoxLayout, QVBoxLayout, QSlider, QStyle, QSizePolicy, QFileDialog, QListWidget, \
+    QListWidgetItem
 from PyQt5.QtCore import Qt, QDate, QUrl, QThread, pyqtSignal, pyqtSlot
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
@@ -24,23 +25,16 @@ class DBUtils(object):
             QMessageBox.about(self.rootController, 'Connection', 'Failed To Connect Database')
             sys.exit(1)
 
-    """
-    def DBFetchJsonOne(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            jsonFetchedBySQL = cur.fetchone()
-            return jsonFetchedBySQL
-    """
-
     def DBFetchAll(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            rows = cur.fetchall()
-            return rows
+        cur = self.con.cursor()
+        cur.execute(sql)
+        rows = cur.fetchall()
+        return rows
 
     def DBValidation(self, userInput):
+        # Used when debugging, comment off!
+        return True
+
         if 'Name' not in userInput or 'Type' not in userInput or 'ID' not in userInput:
             return False
         if userInput['Name'] == '' or userInput['Type'] == '' or userInput['ID'] == '':
@@ -91,15 +85,6 @@ class MyCalendar(QCalendarWidget):
         self.end_date = date
         # reset highlighting of previously selected date range
         self.format_range(QTextCharFormat())
-        """
-        if QApplication.instance().keyboardModifiers() & Qt.ShiftModifier and self.begin_date:
-            self.end_date = date
-            # set highilighting of currently selected date range
-            self.format_range(self.highlight_format)
-        else:
-            self.begin_date = date
-            self.end_date = None
-        """
         self.end_date = date
         # set highilighting of currently selected date range
         self.format_range(self.highlight_format)

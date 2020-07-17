@@ -192,6 +192,16 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox_actions">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>471</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

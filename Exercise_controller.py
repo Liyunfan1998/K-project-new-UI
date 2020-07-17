@@ -1,9 +1,11 @@
+import os
+
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
 import sys
-from Utils import DBUtils
+from Utils import DBUtils, VideoPlayerController
 from excercises_modified import *
 
 
@@ -19,16 +21,38 @@ class Exercise_controller(QDialog):
         self.ui = Ui_MainWindow_Exercises()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
+        self.setUpComboBox()
+
+    def setUpComboBox(self):
+        sql = "select exe from instructionnotes"
+        rows = self.dbUtils.DBFetchAll(sql)
+        comboList = [str(row[0]) for row in rows]
+        self.ui.comboBox_actions.addItems(comboList)
+        self.ui.comboBox_actions.activated.connect(self.updateAll)
+
+    def updateAll(self):
+        exeName = self.ui.comboBox_actions.currentText().split(': ')[1]
+        self.labelExerciseNameUpdate(exeName)
+        index = self.ui.comboBox_actions.currentText().split(' ')[1]
+        self.videoPlayerUpdate(index=index)
+
+    def videoPlayerUpdate(self, index=1):
+        self.videoPlayerController.exit_video()
+        # TODO
+        # 好像没有exit掉，多个视频在后台同时播放
+        sql = 'select videoExercise from instructionnotes where instructionnotes.index="' + str(index) + '"'
+        rows = self.dbUtils.DBFetchAll(sql)
+        relativePath = 'NoLongerInUse/' + str(rows[0][0])
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, relativePath)
+        self.videoPlayerController.open_file(filename=filename)
+        self.videoPlayerController.exit_video()
+
+    def bindVideoPlayerController(self, videoPlayerController=None):
+        self.videoPlayerController = videoPlayerController
 
     def connectUserDefinedSlots(self):
         self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
-
-    def fetchAllWithSQL(self, sql):
-        with self.con:
-            cur = self.con.cursor()
-            cur.execute(sql)
-            rows = cur.fetchall()
-            return rows
 
     def labelInstructionsRealTimeUpdate(self):
         sql = ""
@@ -37,6 +61,9 @@ class Exercise_controller(QDialog):
             # TODO
             print(row)
 
+    def labelExerciseNameUpdate(self, text):
+        self.ui.label_exerciseName.setText(text)
+
     # TODO
     # Other update functions to be added
 
@@ -44,6 +71,7 @@ class Exercise_controller(QDialog):
         pass
 
     def gotoHomeWindow(self):
+        self.videoPlayerController.exit_video()
         self.hide()
         self.videoCaptureController.closeEvent()
         home_controller = self.rootController
