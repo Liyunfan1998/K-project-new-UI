@@ -1,11 +1,11 @@
 import os
 
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
 import MySQLdb as mdb
 import sys
-from Utils import DBUtils, VideoPlayerController
+from Utils import DBUtils
 from excercises_modified import *
 
 

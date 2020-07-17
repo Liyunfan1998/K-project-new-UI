@@ -1,9 +1,7 @@
 import cv2
 from PyQt5.QtGui import QTextCharFormat, QIcon, QPalette, QImage
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QCalendarWidget, QMessageBox, QWidget, \
-    QStyle, QLabel, QWidget, QHBoxLayout, QVBoxLayout, QSlider, QStyle, QSizePolicy, QFileDialog, QListWidget, \
-    QListWidgetItem
-from PyQt5.QtCore import Qt, QDate, QUrl, QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtWidgets import QCalendarWidget, QMessageBox, QLabel, QWidget, QStyle
+from PyQt5.QtCore import Qt, QDate, QUrl, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 import MySQLdb as mdb

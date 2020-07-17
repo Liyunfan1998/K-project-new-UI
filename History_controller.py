@@ -1,6 +1,5 @@
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox, QGraphicsScene, QGraphicsPixmapItem, QListWidgetItem
-import MySQLdb as mdb
 import sys
 from history_modified import *
 from Utils import DBUtils
@@ -20,28 +19,38 @@ class History_controller(QDialog):
         self.ui.setupUi(self)
         self.plotAngleHistory()
         self.patientInfoUpdate()
-        self.comboBoxUpdate()
+        self.setUpComboBox()
         self.connectUserDefinedSlots()
         self.listWidget_historyUpdate()
 
     def connectUserDefinedSlots(self):
         self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
 
-    def comboBoxUpdate(self):
-        # rows = self.dbUtils.DBFetchAll(sql)
-        rows = sample(range(10, 30), 5)
-        self.ui.comboBox_actions.clear()
-        for row in rows:
-            self.ui.comboBox_actions.addItem(str(row))
+    def setUpComboBox(self):
+        sql = "select exe from instructionnotes"
+        rows = self.dbUtils.DBFetchAll(sql)
+        comboList = [str(row[0]) for row in rows]
+        self.ui.comboBox_actions.addItems(comboList)
+        self.ui.comboBox_actions.activated.connect(self.updateAll)
 
-    def listWidget_historyUpdate(self):
-        sql = ""
-        # rows = self.dbUtils.DBFetchAll(sql)
-        rows = sample(range(10, 30), 5)
+    def updateAll(self):
+        exeName = self.ui.comboBox_actions.currentText().replace('Exercise', '').replace(':', '').replace(' ',
+                                                                                                          '').lower()
+        print(exeName)
+        self.listWidget_historyUpdate(exeName=exeName)
+        # self.plotAngleHistory()
+
+    def listWidget_historyUpdate(self, exeName='1muscletightingdeepbreath'):
+        # TODO
+        # Some database table names are inconsistent with the names in the actions table!
+        sql = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='NYU' AND `TABLE_NAME`='" + exeName + "';"
+        rows = self.dbUtils.DBFetchAll(sql)
+        # rows = sample(range(10, 30), 5)
         self.ui.listWidget_history.clear()
         for row in rows:
             # TODO
-            QListWidgetItem(str(row), self.ui.listWidget_history)
+            qlw = QListWidgetItem(str(row[0]), self.ui.listWidget_history)
+            # self.ui.listWidget.itemClicked.connect(self.plotAngleHistory())
             # print(row)
 
     def patientInfoUpdate(self):
@@ -53,7 +62,7 @@ class History_controller(QDialog):
     def plotAngleHistory(self):
         # TODO
         # Dynamic Plot
-        self.image = QPixmap('logo.jpeg').scaled(901, 750, QtCore.Qt.KeepAspectRatio)
+        self.image = QPixmap('hist.jpg').scaled(901, 750, QtCore.Qt.KeepAspectRatio)
         self.ui.graphicsView_angleDatePlot.scene = QGraphicsScene()  # 创建一个图片元素的对象
         item = QGraphicsPixmapItem(self.image)  # 创建一个变量用于承载加载后的图片
         self.ui.graphicsView_angleDatePlot.scene.addItem(item)  # 将加载后的图片传递给scene对象

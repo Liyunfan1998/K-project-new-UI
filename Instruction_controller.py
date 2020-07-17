@@ -1,13 +1,7 @@
 import os
-
-import cv2
-from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QMessageBox, QLabel, QListWidgetItem
-from PyQt5.QtCore import QThread, Qt, pyqtSignal, pyqtSlot
-from PyQt5.QtGui import QImage, QPixmap
-import MySQLdb as mdb
-from Utils import DBUtils, VideoPlayerController
+from PyQt5.QtWidgets import QApplication, QDialog, QListWidgetItem
+from Utils import DBUtils
 import sys
-from random import sample
 from instructions_modified import *
 
 
