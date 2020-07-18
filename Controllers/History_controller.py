@@ -1,3 +1,4 @@
+import os
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog, QGraphicsScene, QGraphicsPixmapItem, QListWidgetItem
 import sys
@@ -39,7 +40,7 @@ class History_controller(QDialog):
         self.listWidget_historyUpdate(exeName=exeName)
         # self.plotAngleHistory()
 
-    def listWidget_historyUpdate(self, exeName='1muscletightingdeepbreath'):
+    def listWidget_historyUpdate(self, exeName='1muscletighteningbreathing'):
         # TODO
         # Some database table names are inconsistent with the names in the actions table!
         sql = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='NYU' AND `TABLE_NAME`='" + exeName + "';"
@@ -53,15 +54,23 @@ class History_controller(QDialog):
             # print(row)
 
     def patientInfoUpdate(self):
-        sql = ""
-        # rows = self.dbUtils.DBFetchAll(sql)
-        rows = "Patient:\n\nName: Li Yunfan\nGender: Male\nID=163020"
+        user_id = self.rootController.user_id
+        sql = "select * from userpassvalidation where userpassvalidation.password='" + user_id + "'"
+        # print(sql)
+        rows = self.dbUtils.DBFetchAll(sql)
+        if len(rows):
+            rows = "Patient:\n\nName: " + rows[0] + "\nGender: " + rows[2] + "\nID=" + rows[1] + "\nType=" + rows[3]
+        else:
+            rows = "Patient:\n\nName: default\nGender: default\nID=default\nERROR!!!"
         self.ui.label_patientInfo.setText(str(rows))
 
     def plotAngleHistory(self):
         # TODO
         # Dynamic Plot
-        self.image = QPixmap('../Assets/hist.jpg').scaled(901, 750, QtCore.Qt.KeepAspectRatio)
+        relativePath = '../Assets/hist.jpg'
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, relativePath)
+        self.image = QPixmap(filename).scaled(901, 750, QtCore.Qt.KeepAspectRatio)
         self.ui.graphicsView_angleDatePlot.scene = QGraphicsScene()  # 创建一个图片元素的对象
         item = QGraphicsPixmapItem(self.image)  # 创建一个变量用于承载加载后的图片
         self.ui.graphicsView_angleDatePlot.scene.addItem(item)  # 将加载后的图片传递给scene对象

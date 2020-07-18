@@ -12,8 +12,9 @@ class Home_controller(QDialog):
         self.ui = Ui_MainWindow_Home()
         self.ui.setupUi(self)
         self.connectUserDefinedSlots()
+        self.user_id = "defaultUser"
         self.loadLogo()
-        self.controllers = {}
+        self.controllers = {"history_controller": None, "exercise_controller": None, "instruction_controller": None}
 
     def loadLogo(self):
         self.image = QPixmap('Assets/logo.jpeg').scaled(150, 150, QtCore.Qt.KeepAspectRatio)
@@ -54,26 +55,35 @@ class Home_controller(QDialog):
 
     def gotoInstructionsWindow(self):
         self.hide()
-        instruction_controller = Instruction_controller(parent=self, rootController=self)
-        instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller)
-        instruction_controller.bindVideoPlayerController(instruction_controller.videoPlayerController)
-        dialog = instruction_controller
+        if self.controllers['instruction_controller'] is None:
+            instruction_controller = Instruction_controller(parent=self, rootController=self)
+            instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller)
+            instruction_controller.bindVideoPlayerController(instruction_controller.videoPlayerController)
+            self.controllers['instruction_controller'] = instruction_controller
+        dialog = self.controllers['instruction_controller']
         dialog.show()
 
     def gotoExercisesWindow(self):
         self.hide()
-        exercise_controller = Exercise_controller(parent=self, rootController=self)
-        exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
-        exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller)
-        exercise_controller.bindVideoPlayerController(exercise_controller.videoPlayerController)
-        dialog = exercise_controller
+        if self.controllers['exercise_controller'] is None:
+            exercise_controller = Exercise_controller(parent=self, rootController=self)
+            exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
+            exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller)
+            exercise_controller.bindVideoPlayerController(exercise_controller.videoPlayerController)
+            self.controllers['exercise_controller'] = exercise_controller
+        dialog = self.controllers['exercise_controller']
         dialog.show()
 
     def gotoHistoryWindow(self):
         self.hide()
-        history_controller = History_controller(parent=self, rootController=self)
-        dialog = history_controller
+        if self.controllers['history_controller'] is None:
+            history_controller = History_controller(parent=self, rootController=self)
+            self.controllers['history_controller'] = history_controller
+        dialog = self.controllers['history_controller']
         dialog.show()
+
+    def setUserID(self, user_id):
+        self.user_id = user_id
 
 
 # This file should not be ran as main entry!

@@ -122,6 +122,8 @@ class VideoPlayerController(QWidget):
         if filename != '':
             self.rootUIController.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(filename)))
             self.rootUIController.ui.pushButton_videoPlay.setEnabled(True)
+            # do not play on open!
+            self.rootUIController.mediaPlayer.pause()
 
     def play_video(self):
         if self.rootUIController.mediaPlayer.state() == QMediaPlayer.PlayingState:

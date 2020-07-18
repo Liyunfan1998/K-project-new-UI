@@ -1,3 +1,5 @@
+from PyQt5.QtWidgets import QMainWindow
+
 from Layouts.login_modified import *
 from Controllers.Home_controller import *
 
@@ -40,6 +42,10 @@ class Login_controller(QMainWindow):
     def gotoHomeWindow(self):
         self.hide()
         home_controller = Home_controller(parent=self)
+        if len(self.parsePrams['id']):
+            home_controller.setUserID(self.parsePrams['id'])
+        else:
+            home_controller.setUserID("defaultUser")
         dialog = home_controller
         dialog.show()
 
