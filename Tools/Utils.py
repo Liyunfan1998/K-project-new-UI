@@ -1,3 +1,5 @@
+import time
+
 import cv2
 from PyQt5.QtGui import QTextCharFormat, QIcon, QPalette, QImage
 from PyQt5.QtWidgets import QCalendarWidget, QMessageBox, QLabel, QWidget, QStyle
@@ -89,57 +91,64 @@ class MyCalendar(QCalendarWidget):
 
 
 class VideoPlayerController(QWidget):
-    def __init__(self, rootUIController):
+    def __init__(self, rootUIController, fileRelativePath):
         super().__init__()
         self.rootUIController = rootUIController
-        # create media player object
-        self.rootUIController.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         # create videowidget object
         self.rootUIController.videowidget = QVideoWidget()
         self.rootUIController.ui.verticalLayout_videoPlayer.addWidget(self.rootUIController.videowidget)
 
-        self.rootUIController.ui.pushButton_videoPlay.setEnabled(True)
+        # self.rootUIController.ui.pushButton_videoPlay.setEnabled(False)
         self.rootUIController.ui.pushButton_videoPlay.setIcon(
             self.rootUIController.style().standardIcon(QStyle.SP_MediaPlay))
         self.rootUIController.ui.pushButton_videoPlay.clicked.connect(self.play_video)
         # create slider
         self.rootUIController.ui.horizontalSlider_videoPos.sliderMoved.connect(self.set_position)
 
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, fileRelativePath)
+        self.open_file(filename=filename)
+
+    def createAndSetupMediaPlayer(self):
+        # create media player object
+        self.rootUIController.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.rootUIController.mediaPlayer.setVideoOutput(self.rootUIController.videowidget)
         # media player signals
         self.rootUIController.mediaPlayer.stateChanged.connect(self.mediastate_changed)
         self.rootUIController.mediaPlayer.positionChanged.connect(self.position_changed)
         self.rootUIController.mediaPlayer.durationChanged.connect(self.duration_changed)
-
-        # Create exit action
-        # TODO
-        dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, 'Assets/1.mp4')
-        self.open_file(filename=filename)
+        self.rootUIController.ui.pushButton_videoPlay.setIcon(
+            self.rootUIController.style().standardIcon(QStyle.SP_MediaPlay))
 
     def open_file(self, filename):
+        self.createAndSetupMediaPlayer()
+        print("open")
+        self.rootUIController.ui.pushButton_videoPlay.setEnabled(True)
         # filename, _ = QFileDialog.getOpenFileName(self.rootUIController, "Open Video")
         if filename != '':
             self.rootUIController.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(filename)))
-            self.rootUIController.ui.pushButton_videoPlay.setEnabled(True)
-            # do not play on open!
-            self.rootUIController.mediaPlayer.pause()
+            self.set_position(0)
+            # TODO
+            # Don't play on open!
+            self.rootUIController.mediaPlayer.stop()
 
     def play_video(self):
+        print("play/pause")
         if self.rootUIController.mediaPlayer.state() == QMediaPlayer.PlayingState:
             self.rootUIController.mediaPlayer.pause()
         else:
             self.rootUIController.mediaPlayer.play()
 
     def exit_video(self):
+        print("exit")
+        # self.rootUIController.ui.horizontalSlider_videoPos.setValue(0)
+        # self.rootUIController.mediaPlayer.pause()
         self.rootUIController.mediaPlayer.stop()
-        self.rootUIController.ui.horizontalSlider_videoPos.setValue(0)
 
     def mediastate_changed(self, state):
         if self.rootUIController.mediaPlayer.state() == QMediaPlayer.PlayingState:
             self.rootUIController.ui.pushButton_videoPlay.setIcon(
                 self.rootUIController.style().standardIcon(QStyle.SP_MediaPause))
-
         else:
             self.rootUIController.ui.pushButton_videoPlay.setIcon(
                 self.rootUIController.style().standardIcon(QStyle.SP_MediaPlay))
@@ -196,6 +205,11 @@ class VideoCaptureController:  # instantiation in Home_controller
         self.setFramePoisition(X=500, Y=410, W=480, H=360)
         self.th = th = Thread(rootUIController)
         th.changePixmap.connect(rootUIController.setImage)
+        th.start()
+
+    def restart(self):
+        self.th = th = Thread(self.rootUIController)
+        th.changePixmap.connect(self.rootUIController.setImage)
         th.start()
 
     def setFramePoisition(self, X=500, Y=410, W=480, H=360):

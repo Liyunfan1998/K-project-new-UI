@@ -56,9 +56,11 @@ class Home_controller(QDialog):
     def gotoInstructionsWindow(self):
         self.hide()
         if self.controllers['instruction_controller'] is None:
+            print("create instruction_controller")
             instruction_controller = Instruction_controller(parent=self, rootController=self)
-            instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller)
-            instruction_controller.bindVideoPlayerController(instruction_controller.videoPlayerController)
+            instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller,
+                                                                                 fileRelativePath='../NoLongerInUse/video/tr1.mp4')
+            instruction_controller.bindVideoPlayerController(instruction_controller.videoPlayerController, )
             self.controllers['instruction_controller'] = instruction_controller
         dialog = self.controllers['instruction_controller']
         dialog.show()
@@ -66,17 +68,22 @@ class Home_controller(QDialog):
     def gotoExercisesWindow(self):
         self.hide()
         if self.controllers['exercise_controller'] is None:
+            print("create exercise_controller")
             exercise_controller = Exercise_controller(parent=self, rootController=self)
             exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
-            exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller)
+            exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller,
+                                                                              fileRelativePath='../NoLongerInUse/video/ex1.mpg')
             exercise_controller.bindVideoPlayerController(exercise_controller.videoPlayerController)
             self.controllers['exercise_controller'] = exercise_controller
+        else:
+            self.controllers['exercise_controller'].videoCaptureController.restart()
         dialog = self.controllers['exercise_controller']
         dialog.show()
 
     def gotoHistoryWindow(self):
         self.hide()
         if self.controllers['history_controller'] is None:
+            print("create history_controller")
             history_controller = History_controller(parent=self, rootController=self)
             self.controllers['history_controller'] = history_controller
         dialog = self.controllers['history_controller']

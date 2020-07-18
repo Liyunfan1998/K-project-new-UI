@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/History_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/History_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Exercise_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Exercise_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Home_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Login_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tools/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/Utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +142,7 @@
       <workItem from="1594018840639" duration="5525000" />
       <workItem from="1594119258028" duration="18373000" />
       <workItem from="1594747248457" duration="461000" />
-      <workItem from="1594747806714" duration="44232000" />
+      <workItem from="1594747806714" duration="49127000" />
     </task>
     <servers />
   </component>
@@ -162,22 +161,22 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1594954431775" />
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1595062974882">
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1595071639495">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1595062974882" />
-    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1595062974881">
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1595071639495" />
+    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1595071639494">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1595062974881" />
-    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1595062974881">
+    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
+    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1595071639494">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1595062974881" />
-    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1595062974882">
+    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
+    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1595071639494">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1595062974882" />
+    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
     <state x="164" y="39" key="SettingsEditor" timestamp="1594747861862">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -204,7 +203,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1595063043028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1595071639485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$xlsx2sql.coverage" NAME="note Coverage Results" MODIFIED="1594957663139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse" />
   </component>
 </project>

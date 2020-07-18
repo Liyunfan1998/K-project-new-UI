@@ -37,7 +37,6 @@ class Exercise_controller(QDialog):
         self.videoPlayerUpdate(index=index)
 
     def videoPlayerUpdate(self, index=1):
-        self.videoPlayerController.exit_video()
         # TODO
         # 好像没有exit掉，多个视频在后台同时播放
         sql = 'select videoExercise from instructionnotes where instructionnotes.index="' + str(index) + '"'
@@ -46,7 +45,6 @@ class Exercise_controller(QDialog):
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, relativePath)
         self.videoPlayerController.open_file(filename=filename)
-        self.videoPlayerController.exit_video()
 
     def bindVideoPlayerController(self, videoPlayerController=None):
         self.videoPlayerController = videoPlayerController
@@ -54,18 +52,8 @@ class Exercise_controller(QDialog):
     def connectUserDefinedSlots(self):
         self.ui.pushButton_home.clicked.connect(self.gotoHomeWindow)
 
-    def labelInstructionsRealTimeUpdate(self):
-        sql = ""
-        rows = self.fetchAllWithSQL(sql)
-        for row in rows:
-            # TODO
-            print(row)
-
     def labelExerciseNameUpdate(self, text):
         self.ui.label_exerciseName.setText(text)
-
-    # TODO
-    # Other update functions to be added
 
     def videoOps(self):
         pass
