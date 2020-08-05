@@ -57,11 +57,13 @@ class History_controller(QDialog):
         user_id = self.rootController.user_id
         sql = "select * from userpassvalidation where userpassvalidation.password='" + user_id + "'"
         # print(sql)
-        rows = self.dbUtils.DBFetchAll(sql)
-        if len(rows):
-            rows = "Patient:\n\nName: " + rows[0] + "\nGender: " + rows[2] + "\nID=" + rows[1] + "\nType=" + rows[3]
-        else:
-            rows = "Patient:\n\nName: default\nGender: default\nID=default\nERROR!!!"
+        try:
+            rows = self.dbUtils.DBFetchAll(sql)[0]
+            # if len(rows):
+            # print(rows,len(rows))
+            rows = "\nName: " + rows[0] + "\nGender: " + rows[2] + "\nID=" + rows[1] + "\nType=" + rows[3]
+        except:
+            rows = "\nName: default\nGender: default\nID=default\nERROR!!!"
         self.ui.label_patientInfo.setText(str(rows))
 
     def plotAngleHistory(self):

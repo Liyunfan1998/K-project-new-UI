@@ -8,7 +8,6 @@ import sys
 from Tools.Utils import DBUtils
 from Layouts.excercises_modified import *
 
-
 # Note That we have to grant access to the camera if we are using a Mac!
 # Either Update your pycharm to 2020.1.3 or use terminal with access settings!
 

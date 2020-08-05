@@ -4,7 +4,6 @@ from Controllers.Exercise_controller import *
 from Controllers.History_controller import *
 from Tools.Utils import *
 
-
 class Home_controller(QDialog):
     def __init__(self, parent=None):
         super(Home_controller, self).__init__(parent)

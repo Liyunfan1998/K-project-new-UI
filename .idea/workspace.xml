@@ -2,10 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/DevLogs.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/embedded_inference.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/hg1.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/datasets/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/datasets/common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/datasets/mpii.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/loss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/predictor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/res/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/res/detections_our_format.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/res/mpii_annotations.json.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/evaluation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/finetune.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/imutils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/logger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/pilutil.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tools/stacked_hourglass/utils/transforms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/K-project-new.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/K-project-new.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/logo.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/logo.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Exercise_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Exercise_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/History_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/History_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Home_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tools/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/Utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hourglass-pkg/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hourglass-pkg/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hourglass-pkg/scripts/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/hourglass-pkg/scripts/inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hourglass-pkg/src/stacked_hourglass/predictor.py" beforeDir="false" afterPath="$PROJECT_DIR$/hourglass-pkg/src/stacked_hourglass/predictor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +60,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1egejE9IhcymdkHbeMC8z7nwXRO" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -85,14 +116,38 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONPATH" value=" $PROJECT_DIR$/Tools/stacked_hourglass:$PROJECT_DIR$/hourglass-pkg/src/stacked_hourglass" />
       </envs>
-      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Controllers/Login_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="embedded_inference" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="K-project-new" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONPATH" value="$PROJECT_DIR$/hourglass-pkg/src/stacked_hourglass" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tools" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tools/embedded_inference.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -125,6 +180,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.Login_controller" />
+      <item itemvalue="Python.embedded_inference" />
       <item itemvalue="Python.note" />
       <item itemvalue="Python.Home_controller" />
     </list>
@@ -142,7 +198,9 @@
       <workItem from="1594018840639" duration="5525000" />
       <workItem from="1594119258028" duration="18373000" />
       <workItem from="1594747248457" duration="461000" />
-      <workItem from="1594747806714" duration="49127000" />
+      <workItem from="1594747806714" duration="49862000" />
+      <workItem from="1595247079370" duration="1944000" />
+      <workItem from="1596596625768" duration="13660000" />
     </task>
     <servers />
   </component>
@@ -157,30 +215,38 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="0" y="236" key="#SQL_Dialects/0.0.1280.800@0.0.1280.800" timestamp="1594920463650" />
-    <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594954431775">
+    <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596610437521">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1594954431775" />
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1595071639495">
+    <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1596610437521" />
+    <state x="433" y="211" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596597078695">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1595071639495" />
-    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1595071639494">
+    <state x="433" y="211" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800@0.0.1280.800" timestamp="1596597078695" />
+    <state x="523" y="165" width="604" height="470" key="EnvironmentVariablesDialog" timestamp="1596609071809">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
-    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1595071639494">
+    <state x="523" y="165" width="604" height="470" key="EnvironmentVariablesDialog/0.0.1280.800@0.0.1280.800" timestamp="1596609071809" />
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom" timestamp="1596614389122">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
-    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1595071639494">
+    <state width="1238" height="133" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1596614389122" />
+    <state width="1238" height="133" key="GridCell.Tab.0.center" timestamp="1596614389121">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1595071639494" />
-    <state x="164" y="39" key="SettingsEditor" timestamp="1594747861862">
+    <state width="1238" height="133" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1596614389121" />
+    <state width="1238" height="133" key="GridCell.Tab.0.left" timestamp="1596614389121">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="164" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1594747861862" />
+    <state width="1238" height="133" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1596614389121" />
+    <state width="1238" height="133" key="GridCell.Tab.0.right" timestamp="1596614389122">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1238" height="133" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1596614389122" />
+    <state x="164" y="39" key="SettingsEditor" timestamp="1596596922427">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="164" y="39" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1596596922427" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1595060094445">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -199,11 +265,27 @@
           <line>56</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Controllers/Login_controller.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tools/Utils.py</url>
+          <line>205</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tools/Utils.py</url>
+          <line>212</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1595071639485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1596614389053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$embedded_inference.coverage" NAME="embedded_inference Coverage Results" MODIFIED="1596612810372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$xlsx2sql.coverage" NAME="note Coverage Results" MODIFIED="1594957663139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse" />
   </component>
 </project>

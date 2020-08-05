@@ -7,8 +7,14 @@ from PyQt5.QtCore import Qt, QDate, QUrl, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 import MySQLdb as mdb
-import sys
-import os
+from torchvision import transforms
+import torch
+from PIL import Image, ImageDraw
+from sys import exit
+from numpy import asarray, zeros
+import os.path
+from Tools.embedded_inference import embedded_inference
+from Tools.stacked_hourglass import hg1, HumanPosePredictor
 
 
 # To replace the repetitive code in the controllers
@@ -173,23 +179,47 @@ class Thread(QThread):
     def __init__(self, rootUIController):
         super().__init__(rootUIController)
         self._run_flag = True
+        self.video_inf = embedded_inference()
+        self.loader = transforms.Compose([transforms.ToTensor()])
+        self.model = hg1(pretrained=True)
+        self.predictor = HumanPosePredictor(self.model, device='cpu')
+        self.device = torch.device('cpu')
 
     def run(self):
         cap = cv2.VideoCapture(0)
-        self.cap = cap
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 256)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 256)
+        cap.set(cv2.CAP_PROP_FPS, 10)
         # capture from web cam
         while self._run_flag:
             ret, frame = cap.read()
             if ret:
-                # https://stackoverflow.com/a/55468544/6622587
                 rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                # https://stackoverflow.com/a/55468544/6622587
+                image_tensor = self.loader(rgbImage).unsqueeze(0).to(self.device, torch.float)
+                """
+                frame: 
+                rgbImage: 'numpy.ndarray'
+                image_tensor: torch tensor
+                """
+                joints = self.video_inf.tensor_inference(self.predictor, image_tensor)
                 h, w, ch = rgbImage.shape
                 bytesPerLine = ch * w
+                self.draw_joints(joints, rgbImage)
                 convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)
         # shut down capture system
         cap.release()
+
+    def draw_joints(self, joints, cv2image=None):
+        # cv2image = zeros((300, 300, 3)) if cv2image is None
+        r = int(cv2image.shape[0] / 100)
+        red = (255, 0, 0)
+        for joint in joints:
+            x = joint[0]
+            y = joint[1]
+            cv2.circle(cv2image, (x, y), r, red, -1)
 
     def stop(self):
         """Sets run flag to False and waits for thread to finish"""
