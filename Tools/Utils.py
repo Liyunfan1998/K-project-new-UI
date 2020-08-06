@@ -1,5 +1,4 @@
 import time
-
 import cv2
 from PyQt5.QtGui import QTextCharFormat, QIcon, QPalette, QImage
 from PyQt5.QtWidgets import QCalendarWidget, QMessageBox, QLabel, QWidget, QStyle
@@ -9,8 +8,7 @@ from PyQt5.QtMultimediaWidgets import QVideoWidget
 import MySQLdb as mdb
 from torchvision import transforms
 import torch
-from PIL import Image, ImageDraw
-from sys import exit
+import sys
 from numpy import asarray, zeros
 import os.path
 from Tools.embedded_inference import embedded_inference

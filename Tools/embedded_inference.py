@@ -17,12 +17,14 @@ from Tools.stacked_hourglass import hg1, HumanPosePredictor
 from PIL import Image, ImageDraw
 from torchvision import transforms
 from timeit import default_timer as timer
+from time import sleep
 
 
 class embedded_inference:
 
     def __init__(self):
         self.global_img = None
+        self._run_flag = True
 
         # loader使用torchvision中自带的transforms函数
         self.loader = transforms.Compose([
@@ -87,12 +89,26 @@ class embedded_inference:
         elif args.camera:
             self.inference_video(predictor, 0)
 
-    # 返回tensor变量
+    def draw_joints(self, joints, cv2image=None):
+        # cv2image = zeros((300, 300, 3)) if cv2image is None
+        r = int(cv2image.shape[0] / 100)
+        red = (255, 0, 0)
+        for joint in joints:
+            x = joint[0]
+            y = joint[1]
+            cv2.circle(cv2image, (x, y), r, red, -1)
+
+    def stop(self):
+        """Sets run flag to False and waits for thread to finish"""
+        self._run_flag = False
+        self.wait()
+
     def image_loader(self, image_name):
         image = Image.open(image_name)
         return image
 
     def image_to_tensor(self, image):
+        # 返回tensor变量
         image.convert('RGB')
         image = self.loader(image)
         print(type(image))
@@ -117,6 +133,7 @@ class embedded_inference:
     def tensor_inference(self, predictor, my_image_tensor, my_image=None):
         return predictor.estimate_joints(my_image_tensor, flip=True).numpy()[0]
 
+    """
     def inference_video(self, predictor, video_path=0):
         video_capture = cv2.VideoCapture(video_path)
         video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, 256)
@@ -127,7 +144,6 @@ class embedded_inference:
             ret, frame = cap = video_capture.read()
             # print(type(frame))
             if ret:
-                # print(idx)
                 if (self.global_img is not None):
                     self.global_img.remove()
                 idx = idx + 1
@@ -142,6 +158,45 @@ class embedded_inference:
             toc = timer()
             print("frame" + str(idx) + "; total time", toc - tic, "; inference time:",
                   inference_toc - inference_tic)  # 输出的时间，秒为单位
+    """
+
+    def inference_video(self, predictor, video_path=0):
+        cap = cv2.VideoCapture(video_path)
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 256)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 256)
+        cap.set(cv2.CAP_PROP_FPS, 10)
+        device = torch.device('cpu')
+        idx = 0
+        # capture from web cam
+        while self._run_flag:
+            tic = timer()
+            ret, frame = cap.read()
+            if ret:
+                idx = idx + 1
+                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                # https://stackoverflow.com/a/55468544/6622587
+                inference_tic = timer()
+                image_tensor = self.loader(rgbImage).unsqueeze(0).to(device, torch.float)
+                inference_toc = timer()
+                """
+                frame: 
+                rgbImage: 'numpy.ndarray'
+                image_tensor: torch tensor
+                """
+                joints = self.tensor_inference(predictor, image_tensor)
+                self.draw_joints(joints, rgbImage)
+                # print(type(rgbImage))
+                # sleep(0.001)
+                cv2.imshow('inference', rgbImage)
+                if cv2.waitKey(1) == ord('q'):
+                    exit(0)
+            else:
+                exit(0)
+            toc = timer()
+            print("frame" + str(idx) + "; total time", toc - tic, "; inference time:",
+                  inference_toc - inference_tic)  # 输出的时间，秒为单位
+        # shut down capture system
+        cap.release()
 
     def imshow_from_tensor(self, tensor, title=None, joints=None):
         tic = timer()

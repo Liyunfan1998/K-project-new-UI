@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/NoLongerInUse/csv2sql" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/hourglass-pkg" vcs="Git" />
   </component>
 </project>
