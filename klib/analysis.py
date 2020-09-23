@@ -152,9 +152,10 @@ class Analysis(object):
                 self.evalstr = self.evalstr.replace('Well done.', '')
             self.evalstr += 'please stand straight.'
 
-    def run(self, exeno, reconJ, surface, evalinst, kp, body, dmap=[], djps=[]):
+    def run(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
         """ analysis main function
         """
+        kp = Kparam(exeno, username="test_user")
 
         if not self.kp.kinect:
             stus = "up"
@@ -202,6 +203,7 @@ class Analysis(object):
                         self.brth.evalstr = ''
                         # update ongoing cycle
                         self.ongoing_cycle = self.brth.ongoing_cycle
+
                         # === eval information ===
                         if self.brth.cnt > 4:
                             evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
@@ -240,7 +242,18 @@ class Analysis(object):
                                 self.jointslist = reconJ21
                             else:
                                 self.jointslist = np.vstack([self.jointslist, reconJ21])
-                            self.hs.hstus_proc(body.hand_left_state, body.hand_right_state)
+                            #
+                            # self.hs.hstus_proc(body.hand_left_state, body.hand_right_state)
+                            self.hs.hstus_proc(2, 3)
+                            """ check the hand status and preprocess it.
+                                        the value of the lhs and rhs represent the tracking
+                                        state given foem Kinect sensor.
+                                        0: unknown
+                                        1: not tracked
+                                        2: open
+                                        3: closed
+                                        4: lasso
+                                    """
                             bdry = self.getChestCoord(djps)
                             self.brth.run(bdry, dmap)
                             self.exercise_started = True
@@ -553,3 +566,14 @@ class Analysis(object):
             else:
                 evalinst.blit_text(surface, self.exer[1].no, kp,
                                    'Click Start to begin', 2)
+
+    def testExeNo4(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        stus = self.handPos(self.exer[4], reconJ)
+        # to check
+        self.stus_lst.append(stus)
+        if True:
+            self.horzp.do = True
+            self.horzp.run(reconJ)
+            self.exercise_started = True
+            if 'stand' not in self.evalstr:
+                self.isBodyStraight(reconJ)
