@@ -6,6 +6,7 @@ import torch.backends.cudnn
 import matplotlib.pyplot as plt
 from torch.nn import DataParallel
 import sys
+import time
 
 # setting PYTHONPATH
 # print(os.path.abspath('../hourglass-pkg/src/stacked_hourglass'))
@@ -84,6 +85,13 @@ class embedded_inference:
         # my_image = image_loader("../inference-img/1.jpg")
         # joints = image_inference(predictor, image_path=None, my_image=my_image)
         # self.imshow(my_image, joints=joints)
+        input_dir = '../patientTrialVideo/'
+        for root, dirs, files in os.walk(input_dir):
+            print(files)
+            for file in files:
+                print(file)
+                self.inference_video(predictor, video_path=input_dir + file, save=True)
+        exit(213)
         if args.camera == False:
             self.inference_video(predictor, "../inference-video/R6llTwEh07w.mp4")
         elif args.camera:
@@ -160,11 +168,18 @@ class embedded_inference:
                   inference_toc - inference_tic)  # 输出的时间，秒为单位
     """
 
-    def inference_video(self, predictor, video_path=0):
+    def inference_video(self, predictor, video_path=0, save=False):
         cap = cv2.VideoCapture(video_path)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 256)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 256)
         cap.set(cv2.CAP_PROP_FPS, 10)
+        fourcc = None
+        out = None
+        if save:
+            fourcc = cv2.VideoWriter_fourcc(*'XVID')
+            size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+            out_path = video_path.split('/')[-1][:-4][13:] if video_path != 0 else time.time()
+            out = cv2.VideoWriter('../saved_inference_output/inf' + out_path + '.avi', fourcc, 10.0, size)
         device = torch.device('cpu')
         idx = 0
         # capture from web cam
@@ -173,7 +188,10 @@ class embedded_inference:
             ret, frame = cap.read()
             if ret:
                 idx = idx + 1
-                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                if video_path == 0:
+                    rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                else:
+                    rgbImage = frame
                 # https://stackoverflow.com/a/55468544/6622587
                 inference_tic = timer()
                 image_tensor = self.loader(rgbImage).unsqueeze(0).to(device, torch.float)
@@ -187,16 +205,20 @@ class embedded_inference:
                 self.draw_joints(joints, rgbImage)
                 # print(type(rgbImage))
                 # sleep(0.001)
+                if save: out.write(rgbImage)
                 cv2.imshow('inference', rgbImage)
                 if cv2.waitKey(1) == ord('q'):
                     exit(0)
-            else:
+            elif video_path==0:
                 exit(0)
+            else:
+                return
             toc = timer()
             print("frame" + str(idx) + "; total time", toc - tic, "; inference time:",
                   inference_toc - inference_tic)  # 输出的时间，秒为单位
         # shut down capture system
         cap.release()
+        if save: out.release()
 
     def imshow_from_tensor(self, tensor, title=None, joints=None):
         tic = timer()

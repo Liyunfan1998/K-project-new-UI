@@ -19,7 +19,7 @@ class Analysis(object):
     """ Analyze the exercise sequence
     """
 
-    def __init__(self):
+    def __init__(self, kp=None):
         self.exer = {}
         self.exer[1] = Exer1()
         self.exer[2] = Exer2()
@@ -48,7 +48,7 @@ class Analysis(object):
         self.jointslist = np.array([])
         self.evalstr = ''  # will be immediate feedback or each frame
         # default color
-        self.kp = Kparam()
+        self.kp = kp if kp else Kparam()
         self.c_togo = self.kp.c_togo
         self.c_handdown = self.kp.c_guide
         self.c_normal = self.kp.c_eval_well
@@ -394,8 +394,8 @@ class Analysis(object):
                             # to check
                             # self.stus_lst.append(self.horzp.state)
                             self.exercise_started = True
-                            if 'stand' not in self.evalstr:
-                                self.isBodyStraight(reconJ)
+                            # if 'stand' not in self.evalstr:
+                            #     self.isBodyStraight(reconJ)
                     elif stus == 'down':
                         if self.horzp.do:
                             self._done = True
@@ -567,13 +567,418 @@ class Analysis(object):
                 evalinst.blit_text(surface, self.exer[1].no, kp,
                                    'Click Start to begin', 2)
 
+    def rawExeNo1(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        if self.exercise_initialized:
+            if not self.paused:
+                if self.exer[1].cntdown <= 0:
+                    if self.kp.kinect:
+                        stus = self.handPos(self.exer[1], reconJ21)  # originally there was no threshold
+                    print(stus)
+                    if stus != 'down':
+                        if len(self.jointslist) == 0:  # store joints information
+                            self.jointslist = reconJ21
+                        else:
+                            self.jointslist = np.vstack([self.jointslist, reconJ21])
+                        bdry = self.getChestCoord(djps)
+                        self.brth.run(bdry, dmap)
+                        self.exercise_started = True
+                        if 'stand' not in self.evalstr:
+                            self.isBodyStraight(reconJ)
+                    elif stus == 'down':
+                        if self.brth.do:
+                            if not self.do_once:
+                                self.brth.breath_analyze()
+                                print('###' * 100)
+                                self.do_once = True
+                                # if self.cnt > 5:
+                                self._done = True
+                                if self.brth.cnt < 4:
+                                    self.brth.err.append('Make sure you do 4 repetitions.')
+                                    self.brth.errsum.append('Make sure you do 4 repetitions.')
+                                print('================= exer END ======================')
+                    self.evalstr = self.brth.evalstr  # evalstr gets updated immediately
+
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.brth.evalstr  # screen message gets the display message
+                    self.brth.evalstr = ''
+                    # update ongoing cycle
+                    self.ongoing_cycle = self.brth.ongoing_cycle
+
+                    # === eval information ===
+                    if self.brth.cnt > 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)  # was c_err
+                    elif self.brth.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    else:
+                        if self.brth.brth_out_flag:
+                            if self.screen_message == '':
+                                self.screen_message = 'Breathe out and relax'
+                        else:
+                            if self.screen_message == '':
+                                print("ctndwn is", self.exer[1].cntdown)
+                                self.screen_message = 'Breathe in while opening your chest'
+                        evalinst.blit_text(surface, exeno, kp, ('%s to go !!' % (4 - self.brth.cnt)),
+                                           4, color=self.c_togo)
+                    self.repcnt = self.brth.cnt
+                else:
+                    self.exer[1].cntdown -= 1
+            else:
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+
+    def rawExeNo2(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+
+        if self.exercise_initialized:
+            if not self.paused:
+                if self.kp.kinect:
+                    stus = self.handPos(self.exer[2], reconJ21)
+                if stus == 'up' or stus == 'upnotstraight':
+                    if self.kp.kinect:
+                        if len(self.jointslist) == 0:  # store joints information
+                            self.jointslist = reconJ21
+                        else:
+                            self.jointslist = np.vstack([self.jointslist, reconJ21])
+                        #
+                        # self.hs.hstus_proc(body.hand_left_state, body.hand_right_state)
+                        self.hs.hstus_proc(2, 3)
+                        """ check the hand status and preprocess it.
+                                    the value of the lhs and rhs represent the tracking
+                                    state given foem Kinect sensor.
+                                    0: unknown
+                                    1: not tracked
+                                    2: open
+                                    3: closed
+                                    4: lasso
+                                """
+                        bdry = self.getChestCoord(djps)
+                        self.brth.run(bdry, dmap)
+                        self.exercise_started = True
+                        if 'stand' not in self.evalstr:
+                            self.isBodyStraight(reconJ)
+                    self.evalstr = self.brth.evalstr  # evalstr gets updated immediately
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.brth.evalstr  # screen message gets the display message
+                    self.brth.evalstr = ''
+                    # update ongoing cycle
+                    self.ongoing_cycle = self.brth.ongoing_cycle
+                    # === eval information ===
+                    if self.brth.cnt > 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2, True,
+                                           color=self.c_stop)
+                    elif self.brth.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2, True,
+                                           color=self.c_stop)
+                    else:
+                        if stus == 'upnotstraight':
+                            if self.screen_message == '':
+                                self.screen_message = 'Please make sure that your arms are straight.'
+                            # evalinst.blit_text(surface, exeno, kp, 'Please make sure that your arms are straight.', 2, True, color=self.c_err)
+                            self.brth.err.append('Please make sure that your arms are straight at %s repetition.'
+                                                 % self.cnvt.ordinal(self.brth.cnt + 1))
+                            self.brth.errsum.append('Please make sure that your arms are straight when breathing.')
+                        else:
+                            if not self.brth.brth_out_flag:
+                                if self.screen_message == '':
+                                    self.screen_message = 'Make a fist while breathing in'
+                            else:
+                                if self.screen_message == '':
+                                    self.screen_message = 'Open your hands while breathing out, relax your muscles'
+                        evalinst.blit_text(surface, exeno, kp, ('%s to go !!' % (4 - self.brth.cnt)), 4,
+                                           color=self.c_togo)
+                    self.repcnt = self.brth.cnt
+                elif stus == 'down':
+                    if self.brth.do:
+                        if not self.do_once:
+                            self.brth.breath_analyze()
+                            hopen, hclose = self.hs.hstus_ana()
+                            if len(hopen) == 0 or len(hclose) == 0:
+                                pass
+                            else:
+                                self.brth.brth_hand_sync(hopen, hclose)
+                            self.do_once = True
+                            self._done = True
+                            if self.brth.cnt < 4:
+                                self.brth.err.append('Make sure you do 4 repetitions.')
+                                self.brth.errsum.append('Make sure you do 4 repetitions.')
+                            print('================= exer END ======================')
+                    else:
+                        # pass
+                        if self.cnt >= 90:
+                            evalinst.blit_text(surface, exeno, kp, 'Please raise your arms.', 2,
+                                               color=self.c_normal)
+                        self.cnt += 1
+            else:  # if paused
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+
+    def rawExeNo3(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        if self.exercise_initialized:
+            print(self.cnt)
+            if not self.paused:
+                if self.kp.kinect:
+                    stus = self.handPos(self.exer[3], reconJ)
+                if stus == 'up':
+                    self.pushdp.do = True
+                elif stus == 'down':
+                    if self.pushdp.do:
+                        self._done = True
+                        if self.pushdp.cnt < 4:
+                            self.pushdp.err.append('Make sure you do 4 repetitions.')
+                            self.pushdp.errsum.append('Make sure you do 4 repetitions.')
+                        print('================= exer END ======================')
+                    else:
+                        print("self count is", self.cnt)
+                        if self.cnt >= 90:
+                            evalinst.blit_text(surface, exeno, kp, 'Please raise yours arms.', 2,
+                                               color=self.c_normal)
+                        self.cnt += 1
+                if self.pushdp.do:
+                    if self.kp.kinect:
+                        self.pushdp.run(reconJ, stus)
+                        self.exercise_started = True
+                    if 'stand' not in self.evalstr:
+                        if self.kp.kinect:
+                            self.isBodyStraight(reconJ)
+                    self.evalstr = self.pushdp.evalstr  # evalstr gets updated immediately
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.pushdp.evalstr  # screen message gets the display message
+                    self.pushdp.evalstr = ''
+                    # === cycle control boolean update ===
+                    self.ongoing_cycle = self.pushdp.ongoing_cycle
+                    if self.pushdp.cnt > 4:
+                        # evalinst.blit_text(surface, exeno, kp, 'Only need to do 4 repetitions', 3, color=self.c_err)
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    elif self.pushdp.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    else:
+                        if stus == 'up':
+                            if self.screen_message == '':
+                                self.screen_message = 'Push down you arms'
+                        elif stus == 'upnotstraight':
+                            if self.screen_message == '':
+                                self.screen_message = 'Please straighten your arms'
+                        elif stus == 'vshape':
+                            if self.screen_message == '':
+                                self.screen_message = 'Raise up your arms'
+                        #
+                        evalinst.blit_text(surface, exeno, kp, '%s to go !!' % str(4 - self.pushdp.cnt),
+                                           4, color=self.c_togo)
+                    self.repcnt = self.pushdp.cnt
+            else:  # if paused
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+
+    def rawExeNo4(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        if self.exercise_initialized:
+            if not self.paused:
+                if self.kp.kinect:
+                    stus = self.handPos(self.exer[4], reconJ)
+                # to check
+                self.stus_lst.append(stus)
+                if stus == 'horizontal' or stus == 'horizontal_bend':  # T-pose
+                    if self.screen_message == '':
+                        self.screen_message = 'Great, your arms are horizontal!'
+                    if self.kp.kinect:
+                        self.horzp.do = True
+                        self.horzp.run(reconJ)
+                        # to check
+                        # self.stus_lst.append(self.horzp.state)
+                        self.exercise_started = True
+                        # if 'stand' not in self.evalstr:
+                        #     self.isBodyStraight(reconJ)
+                elif stus == 'down':
+                    if self.horzp.do:
+                        self._done = True
+                        if self.horzp.cnt < 4:
+                            self.horzp.err.append('Make sure you do 4 repetitions.')
+                            self.horzp.errsum.append('Make sure you do 4 repetitions.')
+                        print(self.stus_lst)
+                        print(self.wr_elb)
+                        print(self.wr_shld)
+                        print('================= exer END ======================')
+                if self.horzp.do:
+                    self.evalstr = self.horzp.evalstr  # evalstr gets updated immediately
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.horzp.evalstr  # screen message gets the display message
+                    self.horzp.evalstr = ''
+                    # === cycle control boolean update ===
+                    self.ongoing_cycle = self.horzp.ongoing_cycle
+
+                    if self.horzp.cnt > 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    elif self.horzp.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    else:
+                        # remove this condition
+                        if stus == 'horizontal' or stus == 'horizontal_bend':  # T-pose
+                            if self.screen_message == '':
+                                self.screen_message = 'Great, your arms are horizontal!'
+                        else:
+                            if self.screen_message == '':
+                                self.screen_message = 'Please keep your arms horizontally.'
+
+                        if self.horzp.state == 'T-pose':
+                            if self.screen_message == '':
+                                self.screen_message = 'Please close your arms to your chest'
+                        elif self.horzp.state == 'chest':
+                            if self.screen_message == '':
+                                self.screen_message = 'Please open your arms to T-pose'
+
+                        # down screen
+                        evalinst.blit_text(surface, exeno, kp, '%s to go !!' % str(4 - self.horzp.cnt),
+                                           4, color=self.c_togo)
+                    self.repcnt = self.horzp.cnt
+
+                else:  # if the exercise never started
+                    if self.cnt >= 75:
+                        # stuck op in the screen
+                        self.start_msg = 'Start with your arms horizontal.'
+                        evalinst.blit_text(surface, exeno, kp, self.start_msg, 2, color=self.c_err)
+                    self.cnt += 1
+            else:  # if paused
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+        # COMMENTING OUT THE REACH TO SKY
+
+    def rawExeNo5(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+
+        if self.exercise_initialized:
+            if not self.paused:
+                if self.exer[5].cntdown <= 0:
+                    if self.kp.kinect:
+                        stus = self.handPos(self.exer[5], reconJ)
+                    if stus == 'belly':
+                        self.cnt = 0
+                        if self.kp.kinect:
+                            self.shld.run(dmap, djps)
+                            self.exercise_started = True
+                    elif stus == 'down':
+                        if self.shld.do:
+                            if self.cnt > 120:  # this was 60, so it was 2 seconds(30 frame per second), now it is 4 seconds
+                                self._done = True
+                                if self.shld.cnt < 4:
+                                    self.shld.err.append('Make sure you do 4 repetitions.')
+                                    self.shld.errsum.append('Make sure you do 4 repetitions.')
+                                print('================= exer END ======================')
+                            self.cnt += 1
+                    self.evalstr = self.shld.evalstr  # evalstr gets updated immediately
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.shld.evalstr  # screen message gets the display message
+                    self.shld.evalstr = ''
+                    # === cycle control boolean update ===
+                    self.ongoing_cycle = self.shld.ongoing_cycle
+
+                    # === eval information ===
+                    if self.shld.cnt > 4:
+                        # evalinst.blit_text(surface, exeno, kp, 'Only need to do 4 repetitions', 3, color=self.c_err)
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                        self._done = True
+                    elif self.shld.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Please push down your arms', 2, color=self.c_stop)
+                        self._done = True
+
+                    else:
+                        evalinst.blit_text(surface, exeno, kp, 'Rotate your shoulders ', 2, color=self.c_normal)
+                        evalinst.blit_text(surface, exeno, kp, ('%s to go !!' % (4 - self.shld.cnt)), 4,
+                                           color=self.c_togo)
+                    self.repcnt = self.shld.cnt
+                    print("\nrepcnt:", self.repcnt)
+                    print(self.shld.twoslist)
+                else:
+                    self.exer[5].cntdown -= 1
+            else:  # if paused
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+
+    def rawExeNo6(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+
+        if self.exercise_initialized:
+            if not self.paused:
+                # self.ongoing_cycle = False
+                if self.exer[6].cntdown <= 0:
+                    if self.kp.kinect:
+                        stus = self.handPos(self.exer[6], reconJ)
+                        print(stus)
+                    if stus == 'down':
+                        if self.clsp.do:
+                            if self.cnt > 90:  # was 90
+                                self._done = True
+                                if self.clsp.cnt < 4:
+                                    self.clsp.err.append('Make sure you do 4 repetitions.')
+                                    self.clsp.errsum.append('Make sure you do 4 repetitions.')
+                                print('================= exer END ======================')
+                            self.cnt += 1
+                    else:
+                        self.cnt = 0
+                        if self.kp.kinect:
+                            self.clsp.run(reconJ)
+                            self.exercise_started = True
+
+                    self.evalstr = self.clsp.evalstr  # immdiate
+                    if self.screen_message == '':  # and self.shld.ongoing_cycle:
+                        self.screen_message = self.clsp.evalstr  # screen message gets the display message
+                    self.clsp.evalstr = ''
+                    # === cycle control boolean update ===
+                    self.ongoing_cycle = self.clsp.ongoing_cycle
+                    print("cycle control boolean update, ", self.ongoing_cycle)
+
+                    # === eval information ===
+                    if self.clsp.cnt > 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    elif self.clsp.cnt == 4:
+                        evalinst.blit_text(surface, exeno, kp, 'Done! Please push down your arms', 2,
+                                           color=self.c_stop)
+                    else:
+                        if self.clsp.mode == 'clasp':
+                            evalinst.blit_text(surface, exeno, kp, 'Start to clasp, close elbows together', 2,
+                                               color=self.c_normal)
+                        else:  # ana.clasp.mode == 'spread'
+                            evalinst.blit_text(surface, exeno, kp,
+                                               'Start to spread, pinch shoulders, and open chest', 2,
+                                               color=self.c_normal)  # start to spread
+                        evalinst.blit_text(surface, exeno, kp, ('%s to go !!' % (4 - self.clsp.cnt)), 4,
+                                           color=self.c_togo)
+                    self.repcnt = self.clsp.cnt
+                else:
+                    self.exer[6].cntdown -= 1
+            else:  # if paused
+                evalinst.blit_text(surface, self.exer[1].no, kp,
+                                   'Click Continue to continue', 2)
+        else:
+            evalinst.blit_text(surface, self.exer[1].no, kp,
+                               'Click Start to begin', 2)
+
     def testExeNo4(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
         stus = self.handPos(self.exer[4], reconJ)
-        # to check
-        self.stus_lst.append(stus)
-        if True:
-            self.horzp.do = True
+        if stus == 'horizontal' or stus == 'horizontal_bend':  # T-pose
+            # 'Great, your arms are horizontal!'
+            pass  # starts horizontal pumping
+            print(stus)
             self.horzp.run(reconJ)
-            self.exercise_started = True
-            if 'stand' not in self.evalstr:
-                self.isBodyStraight(reconJ)
+        elif stus == 'down':
+            # finish one round
+            # 'Make sure you do 4 repetitions.'
+            pass

@@ -5,9 +5,9 @@ import numpy as np
 
 # Predefined param
 
-ana = Analysis()
 exeno = 4
 kp = Kparam(exeno, "test_user")
+ana = Analysis(kp)
 body = np.random.rand(26, 3)  # np.ndarray((26, 3), dtype=np.int)
 h_mod = Human_model()
 modJary = h_mod.human_mod_pts(body, False)  # modJary is 11*3 array
