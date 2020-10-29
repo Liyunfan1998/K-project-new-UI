@@ -2,7 +2,9 @@ from klib.analysis import Analysis
 from klib.initial_param.kparam import *
 from klib.human_model import Human_model
 import numpy as np
+import pandas as pd
 
+reconJ = pd.read_csv("./Kinect-Data-Yunfan/horizontal_pumping_reconJ.csv", header=0, index_col=0).values
 # Predefined param
 
 exeno = 4
@@ -10,8 +12,10 @@ kp = Kparam(exeno, "test_user")
 ana = Analysis(kp)
 body = np.random.rand(26, 3)  # np.ndarray((26, 3), dtype=np.int)
 h_mod = Human_model()
-modJary = h_mod.human_mod_pts(body, False)  # modJary is 11*3 array
-reconJ = modJary.flatten().reshape(-1, 33)  # change shape to 1*33 array
+
+
+# modJary = h_mod.human_mod_pts(body, False)  # modJary is 11*3 array
+# reconJ = modJary.flatten().reshape(-1, 33)  # change shape to 1*33 array
 
 
 def MapCameraPointToDepthSpace():
@@ -75,4 +79,13 @@ Body:   11 joints
 # run(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[])
 
 # ana.run(exeno=exeno, reconJ=reconJ[0], surface=None, evalinst=None, kp=kp, body=None, dmap=None, djps=None)
-ana.testExeNo4(exeno=exeno, reconJ=reconJ[0], surface=None, evalinst=None, kp=kp, body=None, dmap=None, djps=None)
+
+
+for entry in reconJ:
+    # horizontal pumping
+    # ana.testExeNo4(exeno=exeno, reconJ=entry, surface=None, evalinst=None, kp=kp, body=None,
+    #                dmap=None, djps=None)
+
+    ana.testExeNo1(exeno=exeno, reconJ=entry, surface=None, evalinst=None, kp=kp, body=None,
+                   dmap=[], djps=[])
+

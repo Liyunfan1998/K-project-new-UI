@@ -973,12 +973,64 @@ class Analysis(object):
 
     def testExeNo4(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
         stus = self.handPos(self.exer[4], reconJ)
+        print(stus)
         if stus == 'horizontal' or stus == 'horizontal_bend':  # T-pose
             # 'Great, your arms are horizontal!'
             pass  # starts horizontal pumping
-            print(stus)
             self.horzp.run(reconJ)
         elif stus == 'down':
             # finish one round
             # 'Make sure you do 4 repetitions.'
             pass
+
+    def testExeNo1(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        reconJ21 = reconJ[12:]
+        stus = self.handPos(self.exer[1], reconJ21)  # originally there was no threshold
+        if stus != 'down':
+            if len(self.jointslist) == 0:  # store joints information
+                self.jointslist = reconJ21
+            else:
+                self.jointslist = np.vstack([self.jointslist, reconJ21])
+            bdry = self.getChestCoord(djps)
+            self.brth.run(bdry, dmap)
+            # if 'stand' not in self.evalstr:
+            self.isBodyStraight(reconJ)
+        elif stus == 'down':
+            if self.brth.do:
+                self.brth.breath_analyze()
+        # update ongoing cycle
+        self.ongoing_cycle = self.brth.ongoing_cycle
+
+    def rawExeNo2(self, exeno, reconJ, surface=None, evalinst=None, kp=None, body=None, dmap=[], djps=[]):
+        reconJ21 = reconJ[12:]
+        stus = self.handPos(self.exer[2], reconJ21)
+        if stus == 'up' or stus == 'upnotstraight':
+            if len(self.jointslist) == 0:  # store joints information
+                self.jointslist = reconJ21
+            else:
+                self.jointslist = np.vstack([self.jointslist, reconJ21])
+            #
+            # self.hs.hstus_proc(body.hand_left_state, body.hand_right_state)
+            self.hs.hstus_proc(2, 3)
+            """ check the hand status and preprocess it.
+                        the value of the lhs and rhs represent the tracking
+                        state given foem Kinect sensor.
+                        0: unknown
+                        1: not tracked
+                        2: open
+                        3: closed
+                        4: lasso
+                    """
+            bdry = self.getChestCoord(djps)
+            self.brth.run(bdry, dmap)
+            self.exercise_started = True
+            if 'stand' not in self.evalstr:
+                self.isBodyStraight(reconJ)
+            # update ongoing cycle
+            self.ongoing_cycle = self.brth.ongoing_cycle
+        elif stus == 'down':
+            if self.brth.do:
+                self.brth.breath_analyze()
+                hopen, hclose = self.hs.hstus_ana()
+                if len(hopen) != 0 and len(hclose) != 0:
+                    self.brth.brth_hand_sync(hopen, hclose)
