@@ -9,16 +9,16 @@ import MySQLdb as mdb
 import sys
 import os.path
 from timeit import default_timer as timer
-
+from Tools.pose_baseline_mediapipe import *
 import mediapipe as mp
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-
 from torchvision import transforms
 import torch
 from numpy import asarray, zeros
+
 
 # To replace the repetitive code in the controllers
 class DBUtils(object):
@@ -185,6 +185,7 @@ class Thread(QThread):
     def __init__(self, rootUIController):
         super().__init__(rootUIController)
         self._run_flag = True
+        self.lifter = Lifter()
 
     def run(self, cap_fps=10):
         pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
@@ -203,6 +204,15 @@ class Thread(QThread):
                 inference_tic = timer()
                 image.flags.writeable = False
                 results = pose.process(image)
+
+                # TODO: get the lifter to do the analysis
+                xyzv = []
+                if results.pose_landmarks is not None:
+                    for landmark in results.pose_landmarks.landmark:
+                        xyzv.extend([landmark.x, landmark.y, landmark.z, landmark.visibility])
+                    # print(len(xyzv))
+                    self.lift(xyzv)
+
                 image.flags.writeable = True
                 inference_toc = timer()
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -219,6 +229,9 @@ class Thread(QThread):
 
         pose.close()
         cap.release()
+
+    def lift(self, xyzv):
+        return self.lifter().get_3d_joints(xyzv)
 
     def stop(self):
         """Sets run flag to False and waits for thread to finish"""

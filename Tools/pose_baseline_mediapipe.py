@@ -20,25 +20,23 @@ from Tools.linear_model_openpose import LinearModel
 
 
 class Lifter:
-    def __init__(self):
+    def __init__(self, base=os.getcwd() + '/Tools/'):
         train_dir = os.path.join('')
         summaries_dir = os.path.join(train_dir, "log")
-        mean_std_3d = np.load('h36m-3d-mean-std.npz')
+        # base = os.getcwd() + '/Tools/'
+        mean_std_3d = np.load(base + 'h36m-3d-mean-std.npz')
+        mean_std = np.load(base + 'mediapipe-mean-std.npz')
         self.data_mean_3d, self.data_std_3d, self.dim_to_ignore_3d = mean_std_3d['data_mean_3d'], mean_std_3d[
             'data_std_3d'], \
                                                                      mean_std_3d['dim_to_ignore_3d']
         device_count = {"GPU": 0}
         tf.reset_default_graph()
-        # ckpt = tf.train.get_checkpoint_state('./', latest_filename="checkpoint-2402400.index")
         self.sess = tf.Session(config=tf.ConfigProto(device_count=device_count, allow_soft_placement=True))
         self.model = LinearModel(1024, 2, True, True, True, 64, 0.001, summaries_dir)
         self.sess.run(tf.global_variables_initializer())
         self.model.train_writer.add_graph(self.sess.graph)
 
-        # ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
-        # print("Loading model {0}".format(ckpt_name))
-        self.model.saver.restore(self.sess, 'checkpoint-2402400')
-        mean_std = np.load('mediapipe-mean-std.npz')
+        self.model.saver.restore(self.sess, base + 'checkpoint-2402400')
         self.data_mean_2d, self.data_std_2d = mean_std['data_mean'], mean_std['data_std']
 
         self._max = 0
@@ -92,7 +90,7 @@ class Lifter:
         # np.savez('pose3d.npz', pose3d=all_poses_3d)
 
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     import mediapipe as mp
 
     mp_drawing = mp.solutions.drawing_utils
@@ -101,18 +99,30 @@ if __name__ == '__main__':
     import cv2
 
     cap = cv2.VideoCapture(0)
-    for i in range(5):
+    cap.set(cv2.CAP_PROP_FPS, 10)
+    while cap.isOpened():
         ret, image = cap.read()
-    cap.release()
-
-    if ret:
+        image = cv2.flip(image, 1)
         results = pose.process(image)
         xyzv = []
-        for landmark in results.pose_landmarks.landmark:
-            xyzv.extend([landmark.x, landmark.y, landmark.z, landmark.visibility])
-        print(len(xyzv))
-        lifter = Lifter()
-        poses3d = lifter.get_3d_joints(xyzv)
-        print(poses3d)
+        if results.pose_landmarks is not None:
+            for landmark in results.pose_landmarks.landmark:
+                xyzv.extend([landmark.x, landmark.y, landmark.z, landmark.visibility])
+            print(len(xyzv))
+            lifter = Lifter()
+            poses3d = lifter.get_3d_joints(xyzv)
+            print(poses3d)
 
-    pose.release()
+    cap.release()
+    pose.release()'''
+
+import mediapipe as mp
+
+mp_drawing = mp.solutions.drawing_utils
+mp_pose = mp.solutions.pose
+pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+xyzv = [.5] * 132
+lifter = Lifter('./')
+poses3d = lifter.get_3d_joints(xyzv)
+print(poses3d)
