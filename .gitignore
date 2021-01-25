@@ -80,3 +80,4 @@ klib/Kinect-Data-Yunfan
 out_png
 *.mp4
 *checkpoint*
+*.mpg
