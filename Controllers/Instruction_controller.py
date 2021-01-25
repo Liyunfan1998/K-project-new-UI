@@ -4,10 +4,6 @@ from Tools.Utils import DBUtils
 import sys
 from Layouts.instructions_modified import *
 
-
-# Note That we have to grant access to the camera if we are using a Mac!
-# Either Update your pycharm to 2020.1.3 or use terminal with access settings!
-
 class Instruction_controller(QDialog):
     def __init__(self, parent=None, rootController=None):
         super(Instruction_controller, self).__init__(parent)
@@ -44,7 +40,7 @@ class Instruction_controller(QDialog):
         # 好像没有exit掉，多个视频在后台同时播放
         sql = 'select videoInstruction from instructionnotes where instructionnotes.index="' + str(index) + '"'
         rows = self.dbUtils.DBFetchAll(sql)
-        relativePath = '../NoLongerInUse/' + str(rows[0][0])
+        relativePath = '../Assets/' + str(rows[0][0])
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, relativePath)
         self.videoPlayerController.open_file(filename=filename)

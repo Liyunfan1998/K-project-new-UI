@@ -6,14 +6,19 @@ from PyQt5.QtCore import Qt, QDate, QUrl, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 import MySQLdb as mdb
+import sys
+import os.path
+from timeit import default_timer as timer
+
+import mediapipe as mp
+
+mp_drawing = mp.solutions.drawing_utils
+mp_pose = mp.solutions.pose
+
+
 from torchvision import transforms
 import torch
-import sys
 from numpy import asarray, zeros
-import os.path
-from Tools.embedded_inference import embedded_inference
-from Tools.stacked_hourglass import hg1, HumanPosePredictor
-
 
 # To replace the repetitive code in the controllers
 class DBUtils(object):
@@ -24,9 +29,10 @@ class DBUtils(object):
 
     def DBConnection(self):
         try:
-            self.con = mdb.connect('localhost', 'root', 'yun2' + 'fan1', 'NYU')
+            self.con = mdb.connect('liyunfan.fun', 'root', 'yun2fan1', 'NYU')
         except mdb.Error as e:
             QMessageBox.about(self.rootController, 'Connection', 'Failed To Connect Database')
+            print('Failed To Connect Database')
             sys.exit(1)
 
     def DBFetchAll(self, sql):
@@ -132,7 +138,6 @@ class VideoPlayerController(QWidget):
         if filename != '':
             self.rootUIController.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(filename)))
             self.set_position(0)
-            # TODO
             # Don't play on open!
             self.rootUIController.mediaPlayer.stop()
 
@@ -164,10 +169,13 @@ class VideoPlayerController(QWidget):
         self.rootUIController.ui.horizontalSlider_videoPos.setRange(0, duration)
 
     def set_position(self, position):
-        print("pos changed", position)
         self.rootUIController.mediaPlayer.setPosition(position)
+        print("pos changed", position)
 
-    def screenShot(self):
+    def screen_shot(self):
+        pass
+
+    def record_window(self):
         pass
 
 
@@ -177,47 +185,40 @@ class Thread(QThread):
     def __init__(self, rootUIController):
         super().__init__(rootUIController)
         self._run_flag = True
-        self.video_inf = embedded_inference()
-        self.loader = transforms.Compose([transforms.ToTensor()])
-        self.model = hg1(pretrained=True)
-        self.predictor = HumanPosePredictor(self.model, device='cpu')
-        self.device = torch.device('cpu')
 
-    def run(self):
+    def run(self, cap_fps=10):
+        pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
         cap = cv2.VideoCapture(0)
-        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 256)
-        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 256)
-        cap.set(cv2.CAP_PROP_FPS, 10)
-        # capture from web cam
-        while self._run_flag:
-            ret, frame = cap.read()
+        cap.set(cv2.CAP_PROP_FPS, cap_fps)
+        idx = 0
+        while self._run_flag and cap.isOpened():
+            tic = timer()
+            ret, image = cap.read()
             if ret:
-                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                # https://stackoverflow.com/a/55468544/6622587
-                image_tensor = self.loader(rgbImage).unsqueeze(0).to(self.device, torch.float)
-                """
-                frame: 
-                rgbImage: 'numpy.ndarray'
-                image_tensor: torch tensor
-                """
-                joints = self.video_inf.tensor_inference(self.predictor, image_tensor)
-                h, w, ch = rgbImage.shape
+                idx = idx + 1
+                image = cv2.flip(image, 1)
+                # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                h, w, ch = image.shape
                 bytesPerLine = ch * w
-                self.draw_joints(joints, rgbImage)
-                convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
+                inference_tic = timer()
+                image.flags.writeable = False
+                results = pose.process(image)
+                image.flags.writeable = True
+                inference_toc = timer()
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+                if cv2.waitKey(1) == ord('q'):
+                    exit(0)
+                toc = timer()
+                # print("frame" + str(idx) + "; total time", toc - tic, "; inference time:",
+                #       inference_toc - inference_tic)  # 输出的时间，秒为单位
+
+                convertToQtFormat = QImage(image.data, w, h, bytesPerLine, QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)
-        # shut down capture system
-        cap.release()
 
-    def draw_joints(self, joints, cv2image=None):
-        # cv2image = zeros((300, 300, 3)) if cv2image is None
-        r = int(cv2image.shape[0] / 100)
-        red = (255, 0, 0)
-        for joint in joints:
-            x = joint[0]
-            y = joint[1]
-            cv2.circle(cv2image, (x, y), r, red, -1)
+        pose.close()
+        cap.release()
 
     def stop(self):
         """Sets run flag to False and waits for thread to finish"""
@@ -249,4 +250,20 @@ class VideoCaptureController:  # instantiation in Home_controller
         self.th.stop()
 
     def screenShot(self):
+        pass
+
+
+class keypoint_lifter:
+    def __init__(self):
+        pass
+
+    def lift(self, joints_2d):
+        pass
+
+
+class analyser:
+    def __init__(self):
+        pass
+
+    def analyze_by_action(self, action, joints_3d):
         pass

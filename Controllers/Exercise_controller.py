@@ -1,9 +1,8 @@
 import os
 
-from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QImage, QPixmap
-import MySQLdb as mdb
 import sys
 from Tools.Utils import DBUtils
 from Layouts.excercises_modified import *
@@ -40,7 +39,7 @@ class Exercise_controller(QDialog):
         # 好像没有exit掉，多个视频在后台同时播放
         sql = 'select videoExercise from instructionnotes where instructionnotes.index="' + str(index) + '"'
         rows = self.dbUtils.DBFetchAll(sql)
-        relativePath = '../NoLongerInUse/' + str(rows[0][0])
+        relativePath = '../Assets/' + str(rows[0][0])
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, relativePath)
         self.videoPlayerController.open_file(filename=filename)
@@ -64,13 +63,6 @@ class Exercise_controller(QDialog):
         home_controller = self.rootController
         dialog = home_controller
         dialog.show()
-
-    def DBConnection(self):
-        try:
-            self.con = mdb.connect('localhost', 'root', '', 'rehab')
-        except mdb.Error as e:
-            QMessageBox.about(self, 'Connection', 'Failed To Connect Database')
-            sys.exit(1)
 
     @pyqtSlot(QImage)
     def setImage(self, image):

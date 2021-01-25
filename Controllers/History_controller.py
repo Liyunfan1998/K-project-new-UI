@@ -5,10 +5,6 @@ import sys
 from Layouts.history_modified import *
 from Tools.Utils import DBUtils
 
-
-# Note That we have to grant access to the camera if we are using a Mac!
-# Either Update your pycharm to 2020.1.3 or use terminal with access settings!
-
 class History_controller(QDialog):
     def __init__(self, parent=None, rootController=None):
         super(History_controller, self).__init__(parent)

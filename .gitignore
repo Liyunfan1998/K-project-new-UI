@@ -75,5 +75,8 @@ Thumbs.db
 __pycache__
 NoLongerInUse
 saved_inference_output
-patientTrialVideo
+Assets/patientTrialVideo
 klib/Kinect-Data-Yunfan
+out_png
+*.mp4
+*checkpoint*
