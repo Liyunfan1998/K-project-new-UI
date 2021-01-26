@@ -8,7 +8,7 @@ class Kparam(object):
     def __init__(self, exeno='', username=''):
         self.kinect = True
         if sys.platform == "darwin":
-            print('D '*100, 'ARWIN')
+            print('sys.platform = DARWIN')
         
             self.kinect = False
 

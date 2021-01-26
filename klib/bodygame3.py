@@ -694,7 +694,6 @@ class BodyGameRuntime(object):
                         # Modified joint array (change struture from pykinect to np)
                         modJary = self.h_mod.human_mod_pts(joints, False)  # modJary is 11*3 array
                         modJary = modJary.flatten().reshape(-1, 33)  # change shape to 1*33 array
-
                         reconJ = modJary  # uncomment it when disable the denosing process
 
                         self.ana.run(self.exeno, reconJ[0], self.bk_frame_surface, \

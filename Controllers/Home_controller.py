@@ -4,6 +4,7 @@ from Controllers.Exercise_controller import *
 from Controllers.History_controller import *
 from Tools.Utils import *
 
+
 class Home_controller(QDialog):
     def __init__(self, parent=None):
         super(Home_controller, self).__init__(parent)
@@ -14,6 +15,7 @@ class Home_controller(QDialog):
         self.user_id = "defaultUser"
         self.loadLogo()
         self.controllers = {"history_controller": None, "exercise_controller": None, "instruction_controller": None}
+        self.assets_base = '../Assets/'
 
     def loadLogo(self):
         self.image = QPixmap('Assets/logo.jpeg').scaled(150, 150, QtCore.Qt.KeepAspectRatio)
@@ -58,7 +60,7 @@ class Home_controller(QDialog):
             print("create instruction_controller")
             instruction_controller = Instruction_controller(parent=self, rootController=self)
             instruction_controller.videoPlayerController = VideoPlayerController(instruction_controller,
-                                                                                 fileRelativePath='../NoLongerInUse/video/tr1.mp4')
+                                                                                 fileRelativePath=self.assets_base + 'video/tr1.mp4')
             instruction_controller.bindVideoPlayerController(instruction_controller.videoPlayerController, )
             self.controllers['instruction_controller'] = instruction_controller
         dialog = self.controllers['instruction_controller']
@@ -71,7 +73,7 @@ class Home_controller(QDialog):
             exercise_controller = Exercise_controller(parent=self, rootController=self)
             exercise_controller.videoCaptureController = VideoCaptureController(exercise_controller)
             exercise_controller.videoPlayerController = VideoPlayerController(exercise_controller,
-                                                                              fileRelativePath='../NoLongerInUse/video/ex1.mpg')
+                                                                              fileRelativePath=self.assets_base + 'video/ex1.mpg')
             exercise_controller.bindVideoPlayerController(exercise_controller.videoPlayerController)
             self.controllers['exercise_controller'] = exercise_controller
         else:
