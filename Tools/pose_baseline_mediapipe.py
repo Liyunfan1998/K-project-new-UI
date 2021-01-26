@@ -29,7 +29,7 @@ class Lifter:
         self.data_mean_3d, self.data_std_3d, self.dim_to_ignore_3d = mean_std_3d['data_mean_3d'], mean_std_3d[
             'data_std_3d'], \
                                                                      mean_std_3d['dim_to_ignore_3d']
-        device_count = {"GPU": 0}
+        device_count = {"GPU": 1}
         tf.reset_default_graph()
         self.sess = tf.Session(config=tf.ConfigProto(device_count=device_count, allow_soft_placement=True))
         self.model = LinearModel(1024, 2, True, True, True, 64, 0.001, summaries_dir)
@@ -49,31 +49,33 @@ class Lifter:
     def get_3d_joints(self, mp_out):  # mp_out should be of shape (132)
         xyzv = mp_out
         self.frame += 1
-        # spin is the middle point of #11 and #12
-        spine_x, spine_y = np.mean([xyzv[44], xyzv[48]]), np.mean([xyzv[45], xyzv[49]])
         enc_in = np.divide((xyzv - self.data_mean_2d), self.data_mean_2d).reshape(1, 132)
         dec_out = np.zeros((1, 36))
         _, _, poses3d = self.model.step(self.sess, enc_in, dec_out, 1, isTraining=False)
-        enc_in = data_utils.unNormalizeData(enc_in, self.data_mean_2d, self.data_std_2d, [])
         poses3d = data_utils.unNormalizeData(poses3d, self.data_mean_3d, self.data_std_3d, self.dim_to_ignore_3d)
-        self.all_poses_3d.append(poses3d)
-        enc_in, poses3d = map(np.vstack, [enc_in, self.all_poses_3d])
 
-        for i in range(poses3d.shape[0]):
-            for j in range(32):
-                tmp = poses3d[i][j * 3 + 2]
-                poses3d[i][j * 3 + 2] = poses3d[i][j * 3 + 1]
-                poses3d[i][j * 3 + 1] = tmp
-                if poses3d[i][j * 3 + 2] > self._max:
-                    self._max = poses3d[i][j * 3 + 2]
-                if poses3d[i][j * 3 + 2] < self._min:
-                    self._min = poses3d[i][j * 3 + 2]
-
-        for i in range(poses3d.shape[0]):
-            for j in range(32):
-                poses3d[i][j * 3 + 2] = (self._max - poses3d[i][j * 3 + 2] + self._min)
-                poses3d[i][j * 3] += (spine_x - 630)
-                poses3d[i][j * 3 + 2] += (500 - spine_y)
+        # spin is the middle point of #11 and #12
+        # spine_x, spine_y = np.mean([xyzv[44], xyzv[48]]), np.mean([xyzv[45], xyzv[49]])
+        # enc_in = data_utils.unNormalizeData(enc_in, self.data_mean_2d, self.data_std_2d, [])
+        #
+        # self.all_poses_3d.append(poses3d)
+        # enc_in, poses3d = map(np.vstack, [enc_in, self.all_poses_3d])
+        #
+        # for i in range(poses3d.shape[0]):
+        #     for j in range(32):
+        #         tmp = poses3d[i][j * 3 + 2]
+        #         poses3d[i][j * 3 + 2] = poses3d[i][j * 3 + 1]
+        #         poses3d[i][j * 3 + 1] = tmp
+        #         if poses3d[i][j * 3 + 2] > self._max:
+        #             self._max = poses3d[i][j * 3 + 2]
+        #         if poses3d[i][j * 3 + 2] < self._min:
+        #             self._min = poses3d[i][j * 3 + 2]
+        #
+        # for i in range(poses3d.shape[0]):
+        #     for j in range(32):
+        #         poses3d[i][j * 3 + 2] = (self._max - poses3d[i][j * 3 + 2] + self._min)
+        #         poses3d[i][j * 3] += (spine_x - 630)
+        #         poses3d[i][j * 3 + 2] += (500 - spine_y)
         return poses3d
 
         # gs1 = gridspec.GridSpec(1, 1)
@@ -115,14 +117,3 @@ class Lifter:
 
     cap.release()
     pose.release()'''
-
-import mediapipe as mp
-
-mp_drawing = mp.solutions.drawing_utils
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
-
-xyzv = [.5] * 132
-lifter = Lifter('./')
-poses3d = lifter.get_3d_joints(xyzv)
-print(poses3d)
