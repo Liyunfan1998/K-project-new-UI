@@ -79,5 +79,5 @@ Assets/patientTrialVideo
 klib/Kinect-Data-Yunfan
 out_png
 *.mp4
-*checkpoint*
+#*checkpoint*
 *.mpg
