@@ -72,7 +72,7 @@ Thumbs.db
 *.exe
 
 20200711汇报
-__pycache__
+*__pycache__*
 NoLongerInUse
 saved_inference_output
 Assets/patientTrialVideo
@@ -82,3 +82,4 @@ out_png
 #*checkpoint*
 *.mpg
 Tools/checkpoint
+Tools/log
