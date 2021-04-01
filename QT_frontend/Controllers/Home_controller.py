@@ -1,7 +1,7 @@
-from Layouts.home_modified import *
-from Controllers.Instruction_controller import *
-from Controllers.Exercise_controller import *
-from Controllers.History_controller import *
+from QT_frontend.Layouts.home_modified import *
+from QT_frontend.Controllers.Instruction_controller import *
+from QT_frontend.Controllers.Exercise_controller import *
+from QT_frontend.Controllers.History_controller import *
 from Tools.Utils import *
 
 

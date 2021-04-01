@@ -2,7 +2,7 @@ import os
 from PyQt5.QtWidgets import QApplication, QDialog, QListWidgetItem
 from Tools.Utils import DBUtils
 import sys
-from Layouts.instructions_modified import *
+from QT_frontend.Layouts.instructions_modified import *
 
 class Instruction_controller(QDialog):
     def __init__(self, parent=None, rootController=None):

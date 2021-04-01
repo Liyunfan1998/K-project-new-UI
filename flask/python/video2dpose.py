@@ -1,6 +1,7 @@
 import mediapipe as mp
 import numpy as np
 import cv2
+import pyttsx3
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
@@ -82,9 +83,22 @@ bone_idx_pairs = {'right-big-small-arm': (10, 11), 'left-big-small-arm': (16, 17
                   'left-spin-big-arm': (16, 23)}
 
 
-def gen_frames(input=0):
-    cap = cv2.VideoCapture(input)
-    cap.set(cv2.CAP_PROP_FPS, 15)
+def gen_frames(input=1):
+    def to_voice(string='this is a test'):
+        engine = pyttsx3.init()
+        engine.say(string)
+        engine.runAndWait()
+
+    to_voice()
+
+    cap = cv2.VideoCapture(input)  # docker
+    # cap = cv2.VideoCapture(0)  # local
+    # cap.set(cv2.CAP_PROP_FPS, 15)
+
+    analyzer = Analyzer()
+    """TEST VOICE"""
+    analyzer.to_voice(engine=None)
+
     frame_idx, text = 0, ''
     while cap.isOpened():
         success, frame = cap.read()
@@ -111,12 +125,21 @@ def gen_frames(input=0):
             for t in text:
                 cv2.putText(frame, t, org, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
                 org = (org[0], org[1] + 30)
+
+            # analysis
+            # num_landmarks = len(results.pose_landmarks.landmark)
+
+            # TODO: add analysis module and embed the tts engine in it
+            # https://zhuanlan.zhihu.com/p/37923715
+            # https://zhuanlan.zhihu.com/p/38136322
+            if frame_idx % 100 == 0:
+                # analyzer.analyze_pose()
+                analyzer.to_voice(engine=None, string="raise your arms higher")
+
             success, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-            # analysis
-            # num_landmarks = len(results.pose_landmarks.landmark)
 
 
 def get_bone_angle(xyzv, bone_idx_pairs, dim=3):
@@ -148,3 +171,14 @@ def get_bone_angle(xyzv, bone_idx_pairs, dim=3):
     for key, (bone1_idx, bone2_idx) in bone_idx_pairs.items():
         res[key] = _cal_angle(bones[bone1_idx], bones[bone2_idx])
     return res
+
+
+class Analyzer():
+    def analyze_pose(self, pose=None):
+        self.pose = pose
+        # TODO
+
+    def to_voice(self, engine=None, string='this is a test'):
+        engine = pyttsx3.init()
+        engine.say(string)
+        engine.runAndWait()

@@ -2,7 +2,7 @@ import os
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QDialog, QGraphicsScene, QGraphicsPixmapItem, QListWidgetItem
 import sys
-from Layouts.history_modified import *
+from QT_frontend.Layouts.history_modified import *
 from Tools.Utils import DBUtils
 
 class History_controller(QDialog):

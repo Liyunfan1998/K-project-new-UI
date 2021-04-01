@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/klib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tools/stacked_hourglass" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="$USER_HOME$/miniconda3/bin/python" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="NGC_pytorch:21.02-py3.8.5" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R Skeletons" level="application" />
     <orderEntry type="library" name="R User Library" level="project" />

@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 
-from Layouts.login_modified import *
-from Controllers.Home_controller import *
+from QT_frontend.Layouts.login_modified import *
+from QT_frontend.Controllers.Home_controller import *
 
 
 class Login_controller(QMainWindow):

@@ -2,15 +2,19 @@
 
 ### Goal of the project
 
-Realization of a realtime instruction system for injured patients to do habilitation tasks.
-
-
+Realization of a realtime instruction system to guide injured patients to perform rehabilitation tasks.
 
 ### Requirements
 
-- QT
+- Hardware: A computer with a webcam and an nvidia gpu
 
-- PYQT5
+- Nvidia docker (search NGC on google)
+
+- Pytorch Docker Image (From Nvidia Docker Website, with CUDA embedded)
+
+- Flask (such that the frontend can run in a browser)
+
+- MediaPipe (from Google)
 
 - OpenCV
 
@@ -18,36 +22,12 @@ Realization of a realtime instruction system for injured patients to do habilita
 
 ### Installation
 
-If you are using [Anaconda](https://www.anaconda.com/) for installing packages:
-
-1. Download [Anaconda](https://www.anaconda.com/download/)
-
-2. Install following packages (pygame and opencv), since they are not automatically installed by Anaconda:
-
-```shell
-$ conda install -c cogsci pygame
-$ conda install -c menpo opencv
-```
-
 ---
 
-If you are using pip for installing packages:
+We provide a supported version of docker image witch the project can run on
 
-Several dependent packages (not all) are documented in ```req.txt```, so to help you install those packages:
-
-```shell
-$ pip install -r req.txt
-```
+Or if you plan to use pip to build the development env locally, several dependent packages (not all) are documented in ```req.txt```
 
 ---
 
 The data & video are provided elsewhere
-
-
-### [Syncing with upstream](https://help.github.com/articles/syncing-a-fork/)
-
-```shell
-$ git fetch upstream
-$ git merge upstream/master
-```
-
