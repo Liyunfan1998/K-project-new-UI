@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flask/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask/python/vid2pose_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tf_real_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/K-project-new.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/K-project-new.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask/python/video2dpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask/python/video2dpose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_real_time.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +266,7 @@
       <workItem from="1618034229183" duration="6951000" />
       <workItem from="1618041202837" duration="4368000" />
       <workItem from="1618110126177" duration="5067000" />
-      <workItem from="1618115357198" duration="8287000" />
+      <workItem from="1618115357198" duration="8881000" />
     </task>
     <servers />
   </component>
