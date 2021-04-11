@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flask/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask/python/vid2pose_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tf_real_time.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/K-project-new.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/K-project-new.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Exercise_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Controllers/Exercise_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/History_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Controllers/History_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Controllers/Home_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Instruction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Controllers/Instruction_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Controllers/Login_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layouts/excercises_modified.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Layouts/excercises_modified.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layouts/history_modified.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Layouts/history_modified.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layouts/home_modified.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Layouts/home_modified.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layouts/instructions_modified.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Layouts/instructions_modified.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layouts/login_modified.py" beforeDir="false" afterPath="$PROJECT_DIR$/QT_frontend/Layouts/login_modified.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask/python/video2dpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask/python/video2dpose.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask/start.py" afterDir="false" />
     </list>
@@ -80,7 +72,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -101,11 +93,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flask/python" />
       <recent name="$PROJECT_DIR$/QT_frontend" />
       <recent name="$PROJECT_DIR$/Tools" />
       <recent name="$PROJECT_DIR$/Assets" />
       <recent name="$PROJECT_DIR$/NoLongerInUse" />
-      <recent name="$PROJECT_DIR$/Controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Python.start">
@@ -161,9 +153,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="docker://nvcr.io/nvidia/pytorch:21.02-py3_with_mediapipe_alphapose/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flask" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="DockerContainerSettingsRunConfigurationExtension">
@@ -273,7 +265,14 @@
       <workItem from="1616494453584" duration="3496000" />
       <workItem from="1616809486325" duration="6436000" />
       <workItem from="1617195140014" duration="8415000" />
-      <workItem from="1617235941130" duration="326000" />
+      <workItem from="1617235941130" duration="2167000" />
+      <workItem from="1617775927133" duration="1786000" />
+      <workItem from="1617785388102" duration="2277000" />
+      <workItem from="1618034125910" duration="75000" />
+      <workItem from="1618034229183" duration="6951000" />
+      <workItem from="1618041202837" duration="4368000" />
+      <workItem from="1618110126177" duration="5067000" />
+      <workItem from="1618115357198" duration="8287000" />
     </task>
     <servers />
   </component>
@@ -368,16 +367,16 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/K_project_new_UI$3d_pose_baseline_mediapipe.coverage" NAME="pose_baseline_mediapipe Coverage Results" MODIFIED="1611593949282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$test.coverage" NAME="test Coverage Results" MODIFIED="1611626863832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1611559596370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$process.coverage" NAME="process Coverage Results" MODIFIED="1602849842460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/klib/Kinect-Data-Yunfan" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$3d_pose_baseline_mediapipe.coverage" NAME="pose_baseline_mediapipe Coverage Results" MODIFIED="1611593949282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$testAna.coverage" NAME="testAna Coverage Results" MODIFIED="1603946977305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/klib" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$start.coverage" NAME="start Coverage Results" MODIFIED="1617199825758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Exercise_controller.coverage" NAME="Exercise_controller Coverage Results" MODIFIED="1611558815881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Controllers" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$embedded_inference.coverage" NAME="embedded_inference Coverage Results" MODIFIED="1611593838729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1611593454134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$home.coverage" NAME="home Coverage Results" MODIFIED="1611559456419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse/UI" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$xlsx2sql.coverage" NAME="note Coverage Results" MODIFIED="1594957663139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$test.coverage" NAME="test Coverage Results" MODIFIED="1611626863832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Exercise_controller.coverage" NAME="Exercise_controller Coverage Results" MODIFIED="1611558815881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Controllers" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$start.coverage" NAME="start Coverage Results" MODIFIED="1618121611727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$home.coverage" NAME="home Coverage Results" MODIFIED="1611559456419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse/UI" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1611559596370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$embedded_inference.coverage" NAME="embedded_inference Coverage Results" MODIFIED="1611593838729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
   </component>
 </project>

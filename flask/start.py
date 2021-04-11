@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, Response, render_template
-from python.video2dpose import gen_frames
+from python.video2dpose import gen_frames, run
 
 app = Flask(__name__)
 
@@ -32,9 +32,9 @@ def instruction():
 # CV2 camera capture and mediapipe
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(run(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)  # docker
-    # app.run(host='127.0.0.1', port='5002', debug=True)  # local
+    # app.run(host='0.0.0.0', debug=True)  # docker
+    app.run(host='127.0.0.1', port='5002', debug=True)  # local

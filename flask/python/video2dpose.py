@@ -1,102 +1,132 @@
-import mediapipe as mp
+import os
+import time
+import mediapipe as mdp
 import numpy as np
 import cv2
 import pyttsx3
+import multiprocessing as mp
+from .vid2pose_config import *
 
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
-mp_drawing = mp.solutions.drawing_utils
-
-NOSE = 0
-LEFT_EYE_INNER = 1
-LEFT_EYE = 2
-LEFT_EYE_OUTER = 3
-RIGHT_EYE_INNER = 4
-RIGHT_EYE = 5
-RIGHT_EYE_OUTER = 6
-LEFT_EAR = 7
-RIGHT_EAR = 8
-MOUTH_LEFT = 9
-MOUTH_RIGHT = 10
-LEFT_SHOULDER = 11
-RIGHT_SHOULDER = 12
-LEFT_ELBOW = 13
-RIGHT_ELBOW = 14
-LEFT_WRIST = 15
-RIGHT_WRIST = 16
-LEFT_PINKY = 17
-RIGHT_PINKY = 18
-LEFT_INDEX = 19
-RIGHT_INDEX = 20
-LEFT_THUMB = 21
-RIGHT_THUMB = 22
-LEFT_HIP = 23
-RIGHT_HIP = 24
-LEFT_KNEE = 25
-RIGHT_KNEE = 26
-LEFT_ANKLE = 27
-RIGHT_ANKLE = 28
-LEFT_HEEL = 29
-RIGHT_HEEL = 30
-LEFT_FOOT_INDEX = 31
-RIGHT_FOOT_INDEX = 32
-POSE_CONNECTIONS = [
-    (NOSE, RIGHT_EYE_INNER),  # 0
-    (RIGHT_EYE_INNER, RIGHT_EYE),
-    (RIGHT_EYE, RIGHT_EYE_OUTER),
-    (RIGHT_EYE_OUTER, RIGHT_EAR),
-    (NOSE, LEFT_EYE_INNER),
-    (LEFT_EYE_INNER, LEFT_EYE),
-    (LEFT_EYE, LEFT_EYE_OUTER),
-    (LEFT_EYE_OUTER, LEFT_EAR),
-    (MOUTH_RIGHT, MOUTH_LEFT),
-    (RIGHT_SHOULDER, LEFT_SHOULDER),
-    (RIGHT_SHOULDER, RIGHT_ELBOW),  # 10
-    (RIGHT_ELBOW, RIGHT_WRIST),  # 11
-    (RIGHT_WRIST, RIGHT_PINKY),
-    (RIGHT_WRIST, RIGHT_INDEX),
-    (RIGHT_WRIST, RIGHT_THUMB),
-    (RIGHT_PINKY, RIGHT_INDEX),
-    (LEFT_SHOULDER, LEFT_ELBOW),  # 16
-    (LEFT_ELBOW, LEFT_WRIST),  # 17
-    (LEFT_WRIST, LEFT_PINKY),
-    (LEFT_WRIST, LEFT_INDEX),
-    (LEFT_WRIST, LEFT_THUMB),  # 20
-    (LEFT_PINKY, LEFT_INDEX),
-    (RIGHT_SHOULDER, RIGHT_HIP),  # 22
-    (LEFT_SHOULDER, LEFT_HIP),  # 23
-    (RIGHT_HIP, LEFT_HIP),
-    (RIGHT_HIP, LEFT_HIP),
-    (RIGHT_HIP, RIGHT_KNEE),
-    (LEFT_HIP, LEFT_KNEE),
-    (RIGHT_KNEE, RIGHT_ANKLE),
-    (LEFT_KNEE, LEFT_ANKLE),
-    (RIGHT_ANKLE, RIGHT_HEEL),  # 30
-    (LEFT_ANKLE, LEFT_HEEL),
-    (RIGHT_HEEL, RIGHT_FOOT_INDEX),
-    (LEFT_HEEL, LEFT_FOOT_INDEX),
-    (RIGHT_ANKLE, RIGHT_FOOT_INDEX),
-    (LEFT_ANKLE, LEFT_FOOT_INDEX),
-]
-
-bone_idx_pairs = {'right-big-small-arm': (10, 11), 'left-big-small-arm': (16, 17), 'right-spin-big-arm': (22, 10),
-                  'left-spin-big-arm': (16, 23)}
+mp_drawing = mdp.solutions.drawing_utils
+mp_pose = mdp.solutions.pose
 
 
-def gen_frames(input=1):
-    def to_voice(string='this is a test'):
-        engine = pyttsx3.init()
-        engine.say(string)
-        engine.runAndWait()
+def queue_img_put(q_put, VideoCapture=1):
+    cap = cv2.VideoCapture(VideoCapture)
+    while True:
+        success, frame = cap.read()
+        q_put.put(frame) if success else None
+        print("origin_img_q size: ", q_put.qsize())
+        q_put.get() if q_put.qsize() > 1 else None
 
-    to_voice()
 
-    cap = cv2.VideoCapture(input)  # docker
-    # cap = cv2.VideoCapture(0)  # local
+def queue_img_get(q_get):
+    cv2.namedWindow("XY", flags=cv2.WINDOW_FREERATIO)
+
+    # timer, time1 = time.time(), time.time()
+    while True:
+        while q_get.qsize() == 0:
+            time.sleep(0.01)
+
+        frame = q_get.get()
+        print("# get and render")
+        # timer, time1 = time1, time.time()
+        (cv2.imshow("XY", frame), cv2.waitKey(1))
+
+
+def apply_2d_inference_model(origin_img_q, pose_2d_img_q, xyzv_q, my_gpu_memory_limit):
+    pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+    while True:
+        while origin_img_q.qsize() == 0:
+            time.sleep(0.01)
+        frame = origin_img = origin_img_q.get()  # one tf model
+        print("origin_img_q.get()", frame.shape)
+
+        '''inference'''
+        results = pose.process(frame)
+        mp_drawing.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+        pose_2d_img_q.put(frame)
+        print("pose_2d_img_q size: ", pose_2d_img_q.qsize())
+        pose_2d_img_q.get() if pose_2d_img_q.qsize() > 3 else None
+
+        # get 3d coords from mediapipe
+        xyzv = []
+        if results.pose_landmarks is not None:
+            [xyzv.extend([lm.x, lm.y, lm.z, lm.visibility]) for lm in results.pose_landmarks.landmark]
+        xyzv_q.put(xyzv)
+        xyzv_q.get() if xyzv_q.qsize() > 3 else None
+
+
+def apply_lifting_model(pose_2d_img_q, result_img_q, xyzv_q, my_gpu_memory_limit):
+    while True:
+        # timer = time.time()
+        # gpu_limit_rate = my_gpu_memory_limit / int(os.popen('nvidia-smi').readlines()[8].split('/')[2].split('MiB')[0])
+        # '''loading model'''
+        # ckpt_pwd = os.path.join(model_path, 'frozen_inference_graph.pb')
+        # print("||| Loading model time:", time.time() - timer)
+
+        while pose_2d_img_q.qsize() == 0:
+            time.sleep(0.01)
+        frame = pose_2d_img = pose_2d_img_q.get()
+        print("pose_2d_img_q.get()", frame.shape)
+
+        '''inference'''
+        while xyzv_q.qsize() == 0:
+            time.sleep(0.01)
+        xyzv = xyzv_q.get()
+        # print("xyzv_q.get()", xyzv)
+
+        if len(xyzv):
+            angles = get_bone_angle(xyzv, bone_idx_pairs=bone_idx_pairs, dim=2)
+            text, frame_idx = [key + ':' + str(int(value)) for key, value in angles.items()], 0
+            frame, position = cv2.flip(frame, 1), (10, 200)
+            for t in text:
+                cv2.putText(frame, t, position, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                position = (position[0], position[1] + 30)
+        result_img_q.put(frame)
+        print("result_img_q size: ", result_img_q.qsize())
+        result_img_q.get() if result_img_q.qsize() > 7 else None
+
+
+def run():
+    mp.set_start_method(method='spawn')
+
+    origin_img_q = mp.Queue(maxsize=2)
+    pose_2d_img_q = mp.Queue(maxsize=4)
+    xyzv_q = mp.Queue(maxsize=4)
+    result_img_q = mp.Queue(maxsize=8)
+
+    processes = [
+        mp.Process(target=queue_img_put, args=(origin_img_q,)),
+        mp.Process(target=apply_2d_inference_model, args=(origin_img_q, pose_2d_img_q, xyzv_q, my_gpu_memory_limit)),
+        mp.Process(target=apply_lifting_model, args=(pose_2d_img_q, result_img_q, xyzv_q, my_gpu_memory_limit)),
+        # mp.Process(target=queue_img_get, args=(result_img_q,)),
+    ]
+
+    [setattr(process, "daemon", True) for process in processes]
+    [process.start() for process in processes]
+    while True:
+        while result_img_q.qsize() == 0:
+            time.sleep(0.005)
+
+        frame = result_img_q.get()
+        success, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
+    # print("### END ###")
+    # [process.join() for process in processes]
+
+
+def gen_frames(input_fid=0):
+    pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+    cap = cv2.VideoCapture(input_fid)  # docker=1, local=0
     # cap.set(cv2.CAP_PROP_FPS, 15)
 
-    analyzer = Analyzer()
     """TEST VOICE"""
+    analyzer = Analyzer()
     analyzer.to_voice(engine=None)
 
     frame_idx, text = 0, ''
@@ -128,10 +158,6 @@ def gen_frames(input=1):
 
             # analysis
             # num_landmarks = len(results.pose_landmarks.landmark)
-
-            # TODO: add analysis module and embed the tts engine in it
-            # https://zhuanlan.zhihu.com/p/37923715
-            # https://zhuanlan.zhihu.com/p/38136322
             if frame_idx % 100 == 0:
                 # analyzer.analyze_pose()
                 analyzer.to_voice(engine=None, string="raise your arms higher")
@@ -157,17 +183,8 @@ def get_bone_angle(xyzv, bone_idx_pairs, dim=3):
         return np.arccos(cos_) * 180 / np.pi
 
     res = dict()
-    # ====
-    conns = [(RIGHT_SHOULDER, RIGHT_ELBOW),  # RBigArm
-             (RIGHT_WRIST, RIGHT_ELBOW),  # RSmallArm
-             (LEFT_SHOULDER, LEFT_ELBOW),  # LBigArm
-             (LEFT_WRIST, LEFT_ELBOW),  # LSmallArm
-             (RIGHT_SHOULDER, RIGHT_HIP),  # RSpine
-             (LEFT_SHOULDER, LEFT_HIP)]  # LSpine
     bones = [_get_bone_vec(xyzv, con[0], con[1]) for con in conns]
-    bone_idx_pairs = {'right-big-small-arm': (0, 1), 'left-big-small-arm': (2, 3), 'right-spin-big-arm': (4, 0),
-                      'left-spin-big-arm': (5, 2)}
-    # ====
+
     for key, (bone1_idx, bone2_idx) in bone_idx_pairs.items():
         res[key] = _cal_angle(bones[bone1_idx], bones[bone2_idx])
     return res
@@ -178,7 +195,17 @@ class Analyzer():
         self.pose = pose
         # TODO
 
+    # TODO: add analysis module and embed the tts engine in it
+    # https://zhuanlan.zhihu.com/p/37923715
+    # https://zhuanlan.zhihu.com/p/38136322
+
     def to_voice(self, engine=None, string='this is a test'):
         engine = pyttsx3.init()
         engine.say(string)
         engine.runAndWait()
+
+
+if __name__ == '__main__':
+    from vid2pose_config import *
+
+    run()
