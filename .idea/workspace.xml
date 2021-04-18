@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/ANALYSIS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/Squat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/K-project-new.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/K-project-new.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf_real_time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/python/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/python/vid2pose_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/vid2pose_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/python/video2dpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/video2dpose.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/static/Js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/static/Js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/static/Styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/static/Styles/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/static/Styles/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/static/Styles/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/.idea/templates.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/.idea/templates.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/bootstrap-compatible-calendar-widget.zip" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/bootstrap-compatible-calendar-widget.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/instruction.php" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/instruction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/templates/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/templates/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/test_pyttsx.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/test_pyttsx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/ui/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/ui/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/ui/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/ui/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/ui/.idea/ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/ui/.idea/ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask/ui/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/ui/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +173,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flask" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flask_frontend" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -182,7 +207,7 @@
         </option>
       </EXTENSION>
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask/start.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flask_frontend/start.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -216,8 +241,8 @@
     <list>
       <item itemvalue="Python.Login_controller" />
       <item itemvalue="Python.process" />
-      <item itemvalue="Python.testAna" />
       <item itemvalue="Python.start" />
+      <item itemvalue="Python.testAna" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -267,6 +292,11 @@
       <workItem from="1618041202837" duration="4368000" />
       <workItem from="1618110126177" duration="5067000" />
       <workItem from="1618115357198" duration="8881000" />
+      <workItem from="1618672048442" duration="98000" />
+      <workItem from="1618672175923" duration="69000" />
+      <workItem from="1618715709868" duration="2062000" />
+      <workItem from="1618719240383" duration="981000" />
+      <workItem from="1618720418573" duration="633000" />
     </task>
     <servers />
   </component>
@@ -361,16 +391,18 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/K_project_new_UI$process.coverage" NAME="process Coverage Results" MODIFIED="1602849842460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/klib/Kinect-Data-Yunfan" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$3d_pose_baseline_mediapipe.coverage" NAME="pose_baseline_mediapipe Coverage Results" MODIFIED="1611593949282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$testAna.coverage" NAME="testAna Coverage Results" MODIFIED="1603946977305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/klib" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1611593454134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$xlsx2sql.coverage" NAME="note Coverage Results" MODIFIED="1594957663139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$test.coverage" NAME="test Coverage Results" MODIFIED="1611626863832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Exercise_controller.coverage" NAME="Exercise_controller Coverage Results" MODIFIED="1611558815881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Controllers" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$start.coverage" NAME="start Coverage Results" MODIFIED="1618121611727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$home.coverage" NAME="home Coverage Results" MODIFIED="1611559456419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse/UI" />
-    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1611559596370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/K_project_new_UI$embedded_inference.coverage" NAME="embedded_inference Coverage Results" MODIFIED="1611593838729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$xlsx2sql.coverage" NAME="note Coverage Results" MODIFIED="1594957663139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Login_controller.coverage" NAME="Login_controller Coverage Results" MODIFIED="1613531074413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$video2dpose.coverage" NAME="video2dpose Coverage Results" MODIFIED="1614064494341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask/python" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$home.coverage" NAME="home Coverage Results" MODIFIED="1611559456419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NoLongerInUse/UI" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$process.coverage" NAME="process Coverage Results" MODIFIED="1602849842460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/klib/Kinect-Data-Yunfan" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$start.coverage" NAME="start Coverage Results" MODIFIED="1618717057116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flask_frontend" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Exercise_controller.coverage" NAME="Exercise_controller Coverage Results" MODIFIED="1611558815881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Controllers" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$test_Tools.coverage" NAME="test_Tools Coverage Results" MODIFIED="1613531056511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$test.coverage" NAME="test Coverage Results" MODIFIED="1611626863832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tools" />
+    <SUITE FILE_PATH="coverage/K_project_new_UI$Home_controller.coverage" NAME="Home_controller Coverage Results" MODIFIED="1611559596370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

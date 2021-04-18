@@ -1,0 +1,2 @@
+def squat():
+    pass
