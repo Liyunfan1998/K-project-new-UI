@@ -81,3 +81,5 @@ out_png
 *.mp4
 #*checkpoint*
 *.mpg
+*.avi
+
