@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, Response, render_template
-from python.video2dpose import gen_frames, run
+from python.video2dpose import run
 
 app = Flask(__name__)
 

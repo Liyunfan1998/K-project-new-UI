@@ -17,5 +17,5 @@ def supineLegLifing(both_legs_straight, angle_left_leg_right_leg):
 
     if not both_legs_straight:
         yield prepared_instructions[0]
-    if angle_in_range(angle_left_leg_right_leg,0,30):
-        yield
+    if angle_in_range(angle_left_leg_right_leg, 0, 30):
+        yield prepared_instructions[1]

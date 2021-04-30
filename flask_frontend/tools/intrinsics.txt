@@ -1,0 +1,194 @@
+ liyunfan  (e) base  ~  Desktop  GraduationProject  liyunfan  rs-sensor-control 
+
+======================================================
+
+Found the following devices:
+
+  0 : Intel RealSense D435 #033422070913
+
+Select a device by index: 0
+
+Device information: 
+  Name                 : Intel RealSense D435
+  Serial Number        : 033422070913
+  Firmware Version     : 05.12.09.00
+  Recommended Firmware Version : 05.12.12.100
+  Physical Port        : /sys/devices/pci0000:00/0000:00:08.1/0000:06:00.4/usb3/3-2/3-2.3/3-2.3:1.0/video4linux/video0
+  Debug Op Code        : 15
+  Advanced Mode        : YES
+  Product Id           : 0B07
+  Camera Locked        : YES
+  Usb Type Descriptor  : 2.1
+  Product Line         : D400
+  Asic Serial Number   : 034323020993
+  Firmware Update Id   : 034323020993
+  Ip Address           : N/A
+
+======================================================
+
+Device consists of 2 sensors:
+
+  0 : Stereo Module
+  1 : RGB Camera
+
+Select a sensor by index: 1
+
+
+======================================================
+
+What would you like to do with the sensor?
+
+0 : Control sensor's options
+1 : Control sensor's streams
+2 : Show stream intrinsics
+3 : Display extrinsics
+
+Select an action: 2
+
+
+======================================================
+
+Sensor consists of 1 streams: 
+  - Color #0
+Sensor provides the following stream profiles:
+0  : Color #0 (Video Stream: RGB8 1280x720@ 15Hz)
+1  : Color #0 (Video Stream: Y16 1280x720@ 15Hz)
+2  : Color #0 (Video Stream: BGRA8 1280x720@ 15Hz)
+3  : Color #0 (Video Stream: RGBA8 1280x720@ 15Hz)
+4  : Color #0 (Video Stream: BGR8 1280x720@ 15Hz)
+5  : Color #0 (Video Stream: YUYV 1280x720@ 15Hz)
+6  : Color #0 (Video Stream: RGB8 1280x720@ 10Hz)
+7  : Color #0 (Video Stream: Y16 1280x720@ 10Hz)
+8  : Color #0 (Video Stream: BGRA8 1280x720@ 10Hz)
+9  : Color #0 (Video Stream: RGBA8 1280x720@ 10Hz)
+10 : Color #0 (Video Stream: BGR8 1280x720@ 10Hz)
+11 : Color #0 (Video Stream: YUYV 1280x720@ 10Hz)
+12 : Color #0 (Video Stream: RGB8 1280x720@ 6Hz)
+13 : Color #0 (Video Stream: Y16 1280x720@ 6Hz)
+14 : Color #0 (Video Stream: BGRA8 1280x720@ 6Hz)
+15 : Color #0 (Video Stream: RGBA8 1280x720@ 6Hz)
+16 : Color #0 (Video Stream: BGR8 1280x720@ 6Hz)
+17 : Color #0 (Video Stream: YUYV 1280x720@ 6Hz)
+18 : Color #0 (Video Stream: RGB8 640x480@ 30Hz)
+19 : Color #0 (Video Stream: Y16 640x480@ 30Hz)
+20 : Color #0 (Video Stream: BGRA8 640x480@ 30Hz)
+21 : Color #0 (Video Stream: RGBA8 640x480@ 30Hz)
+22 : Color #0 (Video Stream: BGR8 640x480@ 30Hz)
+23 : Color #0 (Video Stream: YUYV 640x480@ 30Hz)
+24 : Color #0 (Video Stream: RGB8 640x480@ 15Hz)
+25 : Color #0 (Video Stream: Y16 640x480@ 15Hz)
+26 : Color #0 (Video Stream: BGRA8 640x480@ 15Hz)
+27 : Color #0 (Video Stream: RGBA8 640x480@ 15Hz)
+28 : Color #0 (Video Stream: BGR8 640x480@ 15Hz)
+29 : Color #0 (Video Stream: YUYV 640x480@ 15Hz)
+30 : Color #0 (Video Stream: RGB8 640x480@ 6Hz)
+31 : Color #0 (Video Stream: Y16 640x480@ 6Hz)
+32 : Color #0 (Video Stream: BGRA8 640x480@ 6Hz)
+33 : Color #0 (Video Stream: RGBA8 640x480@ 6Hz)
+34 : Color #0 (Video Stream: BGR8 640x480@ 6Hz)
+35 : Color #0 (Video Stream: YUYV 640x480@ 6Hz)
+36 : Color #0 (Video Stream: RGB8 424x240@ 60Hz)
+37 : Color #0 (Video Stream: Y16 424x240@ 60Hz)
+38 : Color #0 (Video Stream: BGRA8 424x240@ 60Hz)
+39 : Color #0 (Video Stream: RGBA8 424x240@ 60Hz)
+40 : Color #0 (Video Stream: BGR8 424x240@ 60Hz)
+41 : Color #0 (Video Stream: YUYV 424x240@ 60Hz)
+42 : Color #0 (Video Stream: RGB8 424x240@ 30Hz)
+43 : Color #0 (Video Stream: Y16 424x240@ 30Hz)
+44 : Color #0 (Video Stream: BGRA8 424x240@ 30Hz)
+45 : Color #0 (Video Stream: RGBA8 424x240@ 30Hz)
+46 : Color #0 (Video Stream: BGR8 424x240@ 30Hz)
+47 : Color #0 (Video Stream: YUYV 424x240@ 30Hz)
+48 : Color #0 (Video Stream: RGB8 424x240@ 15Hz)
+49 : Color #0 (Video Stream: Y16 424x240@ 15Hz)
+50 : Color #0 (Video Stream: BGRA8 424x240@ 15Hz)
+51 : Color #0 (Video Stream: RGBA8 424x240@ 15Hz)
+52 : Color #0 (Video Stream: BGR8 424x240@ 15Hz)
+53 : Color #0 (Video Stream: YUYV 424x240@ 15Hz)
+54 : Color #0 (Video Stream: RGB8 424x240@ 6Hz)
+55 : Color #0 (Video Stream: Y16 424x240@ 6Hz)
+56 : Color #0 (Video Stream: BGRA8 424x240@ 6Hz)
+57 : Color #0 (Video Stream: RGBA8 424x240@ 6Hz)
+58 : Color #0 (Video Stream: BGR8 424x240@ 6Hz)
+59 : Color #0 (Video Stream: YUYV 424x240@ 6Hz)
+
+Please select the desired streaming profile: 22
+
+Principal Point         : 320.775, 235.443
+Focal Length            : 608.034, 606.833
+Distortion Model        : Inverse Brown Conrady
+Distortion Coefficients : [0,0,0,0,0]
+Show stream intrinsics again?[y/n]: n
+
+Choose another action for this sensor?[y/n]: n
+
+Choose another sensor?[y/n]: y
+
+
+======================================================
+
+Device consists of 2 sensors:
+
+  0 : Stereo Module
+  1 : RGB Camera
+
+Select a sensor by index: 0
+
+
+======================================================
+
+What would you like to do with the sensor?
+
+0 : Control sensor's options
+1 : Control sensor's streams
+2 : Show stream intrinsics
+3 : Display extrinsics
+
+Select an action: 2
+
+
+======================================================
+
+Sensor consists of 2 streams: 
+  - Depth #0
+  - Infrared #1
+Sensor provides the following stream profiles:
+0  : Infrared #1 (Video Stream: Y8 1280x720@ 6Hz)
+1  : Infrared #1 (Video Stream: Y8 848x480@ 10Hz)
+2  : Infrared #1 (Video Stream: Y8 848x480@ 6Hz)
+3  : Infrared #1 (Video Stream: Y8 640x480@ 30Hz)
+4  : Infrared #1 (Video Stream: Y8 640x480@ 15Hz)
+5  : Infrared #1 (Video Stream: Y8 640x480@ 6Hz)
+6  : Infrared #1 (Video Stream: Y8 640x360@ 30Hz)
+7  : Infrared #1 (Video Stream: Y8 480x270@ 60Hz)
+8  : Infrared #1 (Video Stream: Y8 480x270@ 30Hz)
+9  : Infrared #1 (Video Stream: Y8 480x270@ 15Hz)
+10 : Infrared #1 (Video Stream: Y8 480x270@ 6Hz)
+11 : Infrared #1 (Video Stream: Y8 256x144@ 90Hz)
+12 : Depth #0 (Video Stream: Z16 1280x720@ 6Hz)
+13 : Depth #0 (Video Stream: Z16 848x480@ 10Hz)
+14 : Depth #0 (Video Stream: Z16 848x480@ 6Hz)
+15 : Depth #0 (Video Stream: Z16 640x480@ 30Hz)
+16 : Depth #0 (Video Stream: Z16 640x480@ 15Hz)
+17 : Depth #0 (Video Stream: Z16 640x480@ 6Hz)
+18 : Depth #0 (Video Stream: Z16 640x360@ 30Hz)
+19 : Depth #0 (Video Stream: Z16 480x270@ 60Hz)
+20 : Depth #0 (Video Stream: Z16 480x270@ 30Hz)
+21 : Depth #0 (Video Stream: Z16 480x270@ 15Hz)
+22 : Depth #0 (Video Stream: Z16 480x270@ 6Hz)
+23 : Depth #0 (Video Stream: Z16 256x144@ 90Hz)
+
+Please select the desired streaming profile: 15
+
+Principal Point         : 317.709, 241.402
+Focal Length            : 381.03, 381.03
+Distortion Model        : Brown Conrady
+Distortion Coefficients : [0,0,0,0,0]
+Show stream intrinsics again?[y/n]: n
+
+Choose another action for this sensor?[y/n]: n
+
+Choose another sensor?[y/n]: n
+
+Choose another device?[y/n]: n
+

@@ -14,7 +14,7 @@
         <div class="col-lg-8  offset-lg-2">
             <h3 class="mt-5">Video Instructions</h3>
             <video width=100% controls>
-                <source src="{{ url_for('static', filename='Assets/ex1.mp4') }}" type="video/mp4">
+                <source src="{{ url_for('static', filename='Assets/output.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>

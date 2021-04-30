@@ -83,3 +83,8 @@ out_png
 *.mpg
 *.avi
 *.mp4
+flask_frontend/tools/collect*
+flask_frontend/tools/Ignore
+flask_frontend/tools/__*
+
+
