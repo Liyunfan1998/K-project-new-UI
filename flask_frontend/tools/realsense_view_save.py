@@ -8,12 +8,12 @@ import multiprocessing as mp
 from datetime import datetime
 import tkinter as tk
 import threading
+
 # import pyttsx3
 
 
-
 VideoCapture = 0
-using_realsense = False
+using_realsense = True
 
 
 class App(threading.Thread):
@@ -25,7 +25,7 @@ class App(threading.Thread):
     and is also useful when the system is used by a patient, in which case the patient use it to indicate pain, shaking and calling-for-help
     """
 
-    def __init__(self,state_dict=None):
+    def __init__(self, state_dict=None):
         print("### Start listening to press event ###")
         # print('Now we can continue running code while mainloop runs!')
         threading.Thread.__init__(self)
@@ -35,17 +35,17 @@ class App(threading.Thread):
 
     def onKeyPress(self, event=None):
         stime = str(time.time())
-        print('%s\tYou pressed %s\n' % (stime, event.keycode, ))
+        print('%s\tYou pressed %s\n' % (stime, event.keycode,))
         self.fo.write(stime + '\n')
         self.fo.flush()
 
     def onPgDnPress(self, event):  # Stop Recording
-        self.state_dict['isSavePNG']=False
+        self.state_dict['isSavePNG'] = False
         print("stop saving pngs")
         self.onKeyPress(event)
 
     def onPgUpPress(self, event):  # Start Recording
-        self.state_dict['isSavePNG']=True
+        self.state_dict['isSavePNG'] = True
         print("start saving pngs")
         self.onKeyPress(event)
 
@@ -189,7 +189,7 @@ def save_png(save_dir, color_img_q=None, state_dict=None):
         if state_dict['isSavePNG']:
             cv2.imwrite(save_dir + 'color' + tname, color_image)
             cv2.imwrite(save_dir + 'depth' + tname, depth_image)
-            print("image %s saved", 'color' ,tname)
+            print("image %s saved", 'color', tname)
 
 
 # 加载数据集中的文件
@@ -240,6 +240,7 @@ def load_h5py_to_np(path):
     print('经过打乱之后数据集中的标签顺序是:\n', shuffled_label, len(h5_file['labels']))
     return shuffled_image, shuffled_label
 
+
 # images, labels = load_h5py_to_np('hdf5_file.h5')
 #
 # for i, image in enumerate(images):
@@ -250,11 +251,10 @@ if __name__ == "__main__":
     mp.set_start_method(method='spawn')
     with mp.Manager() as manager:
         state_dict = manager.dict()
-        state_dict['isSavePNG']=False
+        state_dict['isSavePNG'] = False
 
         app = App(state_dict)
         color_img_q = mp.Queue(maxsize=2)
-
 
         if using_realsense:
             get_image(color_img_q, state_dict)
