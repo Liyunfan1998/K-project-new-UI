@@ -1,10 +1,7 @@
-import os
-import time
-import mediapipe as mdp
-import numpy as np
 import cv2
-import pyttsx3
-from .vid2pose_config import *
+import mediapipe as mdp
+
+from configs.MediaPipe_DrawConfig import *
 from exercise_analysis import Analyzer
 
 mp_drawing = mdp.solutions.drawing_utils
@@ -38,7 +35,7 @@ def gen_frames(input_fid=0):
             frame_idx += 1
             if len(xyzv) and frame_idx % 15 == 0:
                 # get bone angles
-                angles = get_bone_angle(xyzv, bone_idx_pairs=bone_idx_pairs, dim=2)
+                angles = get_bone_angle(xyzv, bone_idx_pairs=bone_idx_pairs_all, dim=2)
                 # print(angles)
                 text, frame_idx = [key + ':' + str(int(value)) for key, value in angles.items()], 0
             # viz
@@ -75,8 +72,8 @@ def get_bone_angle(xyzv, bone_idx_pairs, dim=3):
         return np.arccos(cos_) * 180 / np.pi
 
     res = dict()
-    bones = [_get_bone_vec(xyzv, con[0], con[1]) for con in conns]
+    bones = [_get_bone_vec(xyzv, con[0], con[1]) for con in POSE_CONNECTIONS]
 
-    for key, (bone1_idx, bone2_idx) in bone_idx_pairs.items():
+    for key, (bone1_idx, bone2_idx) in bone_idx_pairs_all.items():
         res[key] = _cal_angle(bones[bone1_idx], bones[bone2_idx])
     return res
