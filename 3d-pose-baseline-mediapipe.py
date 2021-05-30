@@ -8,31 +8,22 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import math
 import os
-import random
 import sys
 import time
-import h5py
-import copy
 
-import matplotlib.pyplot as plt
-import numpy as np
-import torch
-from six.moves import xrange  # pylint: disable=redefined-builtin
-import tensorflow.compat.v1 as tf
-import procrustes
-
-import viz
 import cameras
 import data_utils
-from linear_model_openpose import LinearModel
-
+import numpy as np
+import procrustes
+from six.moves import xrange  # pylint: disable=redefined-builtin
 
 # In[2]:
 
 
-train_dir = os.path.join("experiments",'All','dropout_0.5','epochs_{0}'.format(100),'lr_0.001','residual','depth_2','linear_size1024','batch_size_64','no_procrustes','maxnorm''batch_normalization','use_mediapipe','predict_17')
+train_dir = os.path.join("experiments", 'All', 'dropout_0.5', 'epochs_{0}'.format(100), 'lr_0.001', 'residual',
+                         'depth_2', 'linear_size1024', 'batch_size_64', 'no_procrustes', 'maxnorm''batch_normalization',
+                         'use_mediapipe', 'predict_17')
 print(train_dir)
 summaries_dir = os.path.join(train_dir, "log")
 os.system('mkdir -p {}'.format(summaries_dir))
@@ -311,23 +302,13 @@ print(inspect.getsource(LinearModel))
 
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
 import tensorflow.compat.v1 as tf
 import data_utils
 import viz
-import re
-import cameras
-import json
 import os
 import time
-import cv2
 import imageio
 import logging
-import scipy as sp
-from pprint import pprint
-from scipy.interpolate import interp1d
-from scipy.interpolate import UnivariateSpline
-
 
 # In[8]:
 

@@ -12,19 +12,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8  offset-lg-2">
-            <h3 class="mt-5">Video Instructions</h3>
-            <video width=100% controls>
-                <source src="{{ url_for('static', filename='Assets/output.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <h3 class="mt-5">Live Streaming</h3>
+            <img src="{{ url_for('video_feed') }}" width="100%">
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-lg-8  offset-lg-2">
-            <h3 class="mt-5">Live Streaming</h3>
-            <img src="{{ url_for('video_feed') }}" width="100%">
+            <h3 class="mt-5">Video Instructions</h3>
+            <video width=100% controls>
+                <source src="{{ url_for('static', filename='Assets/0002深蹲测试（deep squat）[1080P].h264.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 </div>
