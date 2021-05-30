@@ -58,7 +58,7 @@ Thumbs.db
 *.opensdf
 *.vcxproj
 *vcxproj.*
-
+*.png
 # MinGW generated files
 *.Debug
 *.Release
@@ -86,6 +86,7 @@ out_png
 flask_frontend/tools/collect*
 flask_frontend/tools/Ignore
 flask_frontend/tools/__*
-flask_frontend/tools/BonePatient/*  
+flask_frontend/tmp
+flask_frontend/tools/BonePatient/*
 flask_frontend/tools/.ipynb_checkpoints
 flask_frontend/tools/*.ipynb 
