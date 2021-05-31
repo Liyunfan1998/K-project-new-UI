@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4976e83e-71ce-4a32-9542-b4caa03841fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_frontend/python/configs/MediaPipe_DrawConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/configs/MediaPipe_DrawConfig.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/Analysis_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/Analysis_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/Analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/exercise_analysis/Analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_frontend/python/video2dpose_single_thread.py" beforeDir="false" afterPath="$PROJECT_DIR$/flask_frontend/python/video2dpose_single_thread.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,11 +103,11 @@
       <recent name="$PROJECT_DIR$/flask_frontend/python/exercise_analysis" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tools" />
       <recent name="$PROJECT_DIR$/flask_frontend/tools" />
       <recent name="$PROJECT_DIR$/flask_frontend/python/configs" />
       <recent name="$PROJECT_DIR$/flask_frontend/static/Assets" />
       <recent name="$PROJECT_DIR$/flask/python" />
-      <recent name="$PROJECT_DIR$/QT_frontend" />
     </key>
   </component>
   <component name="RunManager" selected="Python.start">
@@ -351,7 +356,8 @@
       <workItem from="1622111350956" duration="3462000" />
       <workItem from="1622215747617" duration="57611000" />
       <workItem from="1622364300762" duration="5236000" />
-      <workItem from="1622376280410" duration="4742000" />
+      <workItem from="1622376280410" duration="20509000" />
+      <workItem from="1622469270931" duration="1036000" />
     </task>
     <servers />
   </component>

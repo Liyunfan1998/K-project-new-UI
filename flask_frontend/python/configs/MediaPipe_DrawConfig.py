@@ -1,5 +1,6 @@
-from configs.MediaPipe_joints import *
 import numpy as np
+
+from configs.MediaPipe_joints import *
 
 POSE_CONNECTIONS = [
     (NOSE, RIGHT_EYE_INNER),  # 0
@@ -30,10 +31,14 @@ POSE_CONNECTIONS = [
     (LEFT_WRIST, LEFT_INDEX),  # 19
     (LEFT_WRIST, LEFT_THUMB),  # 20
     (LEFT_PINKY, LEFT_INDEX),  # 21
-    (RIGHT_SHOULDER, RIGHT_HIP),  # 22
-    (LEFT_SHOULDER, LEFT_HIP),  # 23
+
+    # (RIGHT_SHOULDER, RIGHT_HIP),  # 22
+    # (LEFT_SHOULDER, LEFT_HIP),  # 23
+    (RIGHT_HIP, RIGHT_SHOULDER),  # 22
+    (LEFT_HIP, LEFT_SHOULDER),  # 23
+
     (RIGHT_HIP, LEFT_HIP),  # 24
-    (RIGHT_HIP, LEFT_HIP),  # 25
+    (LEFT_HIP, RIGHT_HIP),  # 25
     (RIGHT_HIP, RIGHT_KNEE),  # 26
     (LEFT_HIP, LEFT_KNEE),  # 27
     # (RIGHT_KNEE, RIGHT_ANKLE),  # 28
@@ -47,6 +52,10 @@ POSE_CONNECTIONS = [
     (LEFT_HEEL, LEFT_FOOT_INDEX),  # 33
     (RIGHT_ANKLE, RIGHT_FOOT_INDEX),  # 34
     (LEFT_ANKLE, LEFT_FOOT_INDEX),  # 35
+    #############################################
+    (LEFT_WRIST, RIGHT_WRIST),  # 36
+    (LEFT_KNEE, RIGHT_KNEE),  # 37
+    (LEFT_ANKLE, RIGHT_ANKLE),  # 38
 ]
 
 bone_idx_pairs_all = {'left-big-small-arm': (16, 17), 'right-big-small-arm': (10, 11),

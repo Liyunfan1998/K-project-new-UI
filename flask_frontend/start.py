@@ -1,4 +1,5 @@
-from flask import Flask, redirect, url_for, Response, render_template
+from flask import Flask, Response, render_template
+
 from python.video2dpose import run
 
 app = Flask(__name__)
@@ -6,27 +7,22 @@ app = Flask(__name__)
 
 @app.route('/')
 def login():
-    return render_template('login.php')
+    return render_template('login.php', methods=['POST'])
 
 
 @app.route('/home')
 def home():
-    return render_template('home.php')
+    return render_template('home.php', methods=['POST'])
 
 
-@app.route('/exercise')
+@app.route('/exercise', methods=['POST'])
 def exercise():
     return render_template('exercise.php')
 
 
-@app.route('/history')
+@app.route('/history', methods=['POST'])
 def history():
     return 'Hello World'
-
-
-@app.route('/instruction')
-def instruction():
-    return render_template('instruction.php')
 
 
 # CV2 camera capture and mediapipe
