@@ -16,10 +16,10 @@ def squat(left_knee_angle_from_front, right_knee_angle_from_front, dist_hip_to_f
     '''
 
     squat_depth_ratio = dist_hip_to_foot / dist_hip_to_hip
-    prepared_instructions = {0: "please don't lean your upper body over towards the camera",
-                             1: "please stand on the center of the sole, instead of the sides, of your feet",
-                             2: "please try to lower your hip below the top of your knees",
-                             3: "please keep your knees pointing to the front direction and your legs parallel to "
+    prepared_instructions = {0: "don't lean your upper body over towards the camera",
+                             1: "stand on the center of the sole, instead of the sides, of your feet",
+                             2: "try to lower your hip below the top of your knees",
+                             3: "keep your knees pointing to the front direction and your legs parallel to "
                                 "each other",
                              4: "are you feeling pain? if so, stop the exercise immediately!"
                              }
